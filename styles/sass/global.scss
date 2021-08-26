@@ -1,0 +1,110 @@
+@use "sass:color";
+@use "sass:math";
+
+//
+// Nossas variáveis
+//
+
+$themes-rose-pine-moon-bg: rgb(35, 33, 54); // Copiado do tema Rosé Pine Moon
+$default-border-radius: 15px;
+$table-border-radius: $default-border-radius;
+$code-block-border-radius: $default-border-radius;
+$code-border-radius: math.div($code-block-border-radius, 3);
+$default-elem-margin: 1.25rem 0px;
+
+
+
+
+
+//
+// Aqui modificamos as variáveis do bulma (https://bulma.io/documentation/customize/variables/)
+//
+
+$text: rgb(201, 209, 217);
+$text-strong: color.scale($text, $lightness: 50%); // ? Ainda não sei como fica
+$title-color: color.scale($text, $lightness: 50%);
+
+$background: rgb(25, 23, 36);
+
+$scheme-main: $themes-rose-pine-moon-bg;
+
+// Só testado com tables. $table-cell-border usa essa cor
+$border: color.scale($themes-rose-pine-moon-bg, $lightness: 10%);
+
+// Mesmo que o padrão, porém sem padding horizontal
+$pre-padding: $default-elem-margin;
+
+
+
+
+
+@import "../../vendor/bulma/bulma.sass";
+
+
+
+
+
+.title:not(:first-child) {
+  margin-top: 2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend .title;
+}
+
+h1 {
+  @extend .is-1;
+}
+
+h2 {
+  @extend .is-2;
+}
+
+h3 {
+  @extend .is-3;
+}
+
+h4 {
+  @extend .is-4;
+}
+
+h5 {
+  @extend .is-5;
+}
+
+h6 {
+  @extend .is-6;
+}
+
+li {
+  // Coloca os ::marker dentro das listas (https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position)
+  list-style-position: inside;
+}
+
+table {
+  @extend .table;
+  box-shadow: inset -1.5px 1.5px 5px #0008;
+  border-radius: $table-border-radius;
+  margin: $default-elem-margin;
+}
+
+pre {
+  background-color: transparent;
+  width: fit-content;
+
+  code {
+    box-shadow: inset -1.5px 1.5px 5px #0008;
+    border-radius: $code-block-border-radius;
+  }
+}
+
+code {
+  border-radius: $code-border-radius;
+}
+
+body {
+  padding: 0% 15%;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: $background;
+}

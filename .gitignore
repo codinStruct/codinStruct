@@ -1,0 +1,3 @@
+# CSS obtido após pré-processar o Sass
+styles/css/*.map
+styles/css/global.css
