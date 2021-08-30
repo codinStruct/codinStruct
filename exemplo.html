@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="styles/css/global.css">
+  <link rel="stylesheet" href="styles/css/animacoes.css">
+
+  <!-- Importar o highlight.js e o tema -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/ros-pine-moon.min.css"
+    crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"
+    crossorigin="anonymous"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/790a3002da.js" crossorigin="anonymous"></script>
+
+  <!-- swiped-events (https://github.com/john-doherty/swiped-events) -->
+  <script src="vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
+</head>
+
+
+
+
+
+<body>
+  <aside id="barra-lateral" class="sidebar">
+    <ul class="menu-list" title="Geral" data-titulo="Geral">
+      <li>
+        <a class="icon-text aberta">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+          <span>Home</span>
+        </a>
+      </li>
+    </ul>
+
+
+    <ul class="menu-list" title="Linguagem C" data-titulo="Linguagem C">
+      <li>
+        <a class="categoria aberta">
+          <span class="icon">
+            <!-- Categoria tem a classe .aberta, então seta pra cima -->
+            <i class="fas fa-angle-up"></i>
+          </span>
+          <span>Básico</span>
+        </a>
+        <ul>
+          <li><a>Introdução</a></li>
+          <li><a>Primeiro programa</a></li>
+          <li><a>Tipos fundamentais</a></li>
+          <li><a>Variáveis</a></li>
+          <li><a>Funções</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="categoria aberta is-active">
+          <span class="icon">
+            <!-- Categoria tem a classe .aberta, então seta pra cima -->
+            <i class="fas fa-angle-up"></i>
+          </span>
+          <span>Intermediário</span>
+        </a>
+        <ul>
+          <li><a>Tipos incompletos</a></li>
+          <li><a class="is-active">Conversões implícitas</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="categoria">
+          <span class="icon">
+            <!-- Categoria não tem a classe .aberta, então seta pra baixo -->
+            <i class="fas fa-angle-down"></i>
+          </span>
+          <span>Avançado</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+
+
+
+
+  <div class="conteudo">
+    <h1>Conversões implícitas</h1>
+    <p>Os tipos integrais são claramente diferentes dos tipos de ponto flutuante. Essa
+      diferença não se dá somente nos valores que os objetos podem assumir, mas também
+      na representação deles na memória.</p>
+    <pre><code class="language-c">int i = 1;
+float f = 1;
+</code></pre>
+    <p>Por mais que <code>i</code> e <code>f</code> possuam o mesmo valor, ele pode ser representado de forma
+      diferente em cada objeto. O seguinte código exibe a representação hexadecimal
+      dos bytes que compõem esses objetos:</p>
+    <pre><code class="language-c">for (int x = 0; x &lt; sizeof(i); ++x)
+    printf(&quot;%.2hhx &quot;, ((char *)&amp;i)[x]);
+
+putchar('\n');
+
+for (int x = 0; x &lt; sizeof(f); ++x)
+    printf(&quot;%.2hhx &quot;, ((char *)&amp;f)[x]);
+</code></pre>
+    <!-- ? Esse código funciona em qualquer implementação? -->
+    <p>A seguinte tabela exibe as informações obtidas executando os trechos acima em
+      certo sistema Linux x86-64:</p>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>i</th>
+          <th>f</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Valor</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Bytes</td>
+          <td>01 00 00 00</td>
+          <td>00 00 80 3f</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Até atribuindo o valor de <code>f</code> para <code>i</code> com <code>i = f</code> e executando o código
+      novamente, os resultados são os mesmos que na tabela. Como isso é possível?</p>
+    <p>Esse é o efeito das conversões implícitas no C. Veja bem: para não haver
+      resultados inesperados, o compilador gera código que converte o valor em ponto
+      flutuante para um tipo integral mesmo que as representações não batam. Isso
+      significa que ao executar <code>i = f</code>, a memória não é apenas copiada mas também
+      convertida na atribuição.</p>
+    <p>O processo de conversão implícita segue várias regras bem estabelecidas no
+      padrão C ISO:</p>
+    <!-- TODO: Colocar as regras aqui -->
+    <!-- TODO: Explicar como usar casts para evitar conversões implícitas -->
+    <h1>Exercícios</h1>
+    <ol>
+      <li>Exiba as memórias de um <code>int</code> e um <code>float</code> com o mesmo valor e verifique se
+        há alguma diferença.</li>
+      <li>Copie a memória de um <code>int</code> com valor 5 para um <code>float</code>, sem conversões,
+        utilizando um cast. Exiba as memórias assim como no exercício anterior.</li>
+    </ol>
+    <h1>Referências</h1>
+    <ul>
+      <li>Padrão C18 (ISO/IEC 9899:2018):<ul>
+          <li>6.3 Conversions (p: 37)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+  <script>
+    // TODO: Esse script deve rodar sempre que o .conteudo for alterado, por ex.
+    //       trocar de página ou categoria
+    document.querySelectorAll('.conteudo pre code').forEach(el => {
+      hljs.highlightElement(el);
+    });
+
+    let barraLateral = document.getElementById('barra-lateral');
+
+    // Swipes para abrir e fechar a barra lateral
+    document.addEventListener('swiped', function (e) {
+      switch (e.detail.dir) {
+        case 'left':
+          if (barraLateral.contains(e.target)) { // O swipe foi na barra
+            barraLateral.classList.remove("slide-in-left-mobile");
+            barraLateral.classList.add("slide-out-left-mobile");
+          }
+          break;
+
+        case 'right':
+          // Ignorar o swipe se for acima de um elemento horizontalmente
+          // scrollável.
+          if (e.target.scrollWidth > e.target.clientWidth)
+            return;
+
+          barraLateral.classList.remove("slide-out-left-mobile");
+          barraLateral.classList.add("slide-in-left-mobile");
+          break;
+      }
+    });
+  </script>
+</body>
+
+</html>

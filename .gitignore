@@ -4,3 +4,4 @@ Projeto-Content-Converted
 # CSS obtido após pré-processar o Sass
 styles/css/*.map
 styles/css/global.css
+styles/css/cores.css

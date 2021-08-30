@@ -1,110 +1,201 @@
 @use "sass:color";
+@use "sass:map" as *;
 @use "sass:math";
 
-//
-// Nossas variáveis
-//
+@use "cores";
+@use "utils/lista_utils.scss" as lista_utils;
 
-$themes-rose-pine-moon-bg: rgb(35, 33, 54); // Copiado do tema Rosé Pine Moon
-$default-border-radius: 15px;
-$table-border-radius: $default-border-radius;
-$code-block-border-radius: $default-border-radius;
+@use "../../vendor/bulma/bulma.sass" as * with (
+
+  $purple: cores.$roxo,
+  $text: cores.$texto-claro,
+  $text-strong: color.scale(cores.$texto-claro, $lightness: 50%), // ? Ainda não sei como fica
+  $text-light: color.scale(cores.$texto-claro, $lightness: -50%),
+  $link: cores.$roxo,
+  $background: cores.$rose-pine-bg,
+  $scheme-main: cores.$rose-pine-moon-bg,
+  // Só testado com tables. $table-cell-border usa essa cor
+  $border: color.scale(cores.$rose-pine-moon-bg, $lightness: 10%)
+);
+
+
+
+
+
+//
+// Configurações do estilo
+//
+$conteudo-sombras: true;
+$conteudo-blocos-largos-desktop: false;
+$conteudo-blocos-largos-mobile: true;
+
+
+
+
+
+$bloco-border-radius: 15px;
+$table-border-radius: $bloco-border-radius;
+$code-block-border-radius: $bloco-border-radius;
 $code-border-radius: math.div($code-block-border-radius, 3);
-$default-elem-margin: 1.25rem 0px;
+
+$conteudo-padding-horizontal: 16px;
+$sidebar: (
+  "width": (
+    "desktop": 256px,
+    "mobile": 100%
+  ),
+  "bg": cores.$rose-pine-moon-bg,
+  "shadow-radius": $conteudo-padding-horizontal * 0.75
+);
+$conteudo: (
+  "padding": (
+    "desktop": (
+      "top": 2em,
+      "right": $conteudo-padding-horizontal,
+      "bottom": 0,
+      // Como a barra lateral tem posição absoluta, aqui nos distanciamos dela
+      "left": get($sidebar, "width", "desktop") + $conteudo-padding-horizontal
+    ),
+    "mobile": (
+      "top": 2em,
+      "right": $conteudo-padding-horizontal,
+      "bottom": 0,
+      "left": $conteudo-padding-horizontal
+    )
+  )
+);
 
 
 
 
 
-//
-// Aqui modificamos as variáveis do bulma (https://bulma.io/documentation/customize/variables/)
-//
-
-$text: rgb(201, 209, 217);
-$text-strong: color.scale($text, $lightness: 50%); // ? Ainda não sei como fica
-$title-color: color.scale($text, $lightness: 50%);
-
-$background: rgb(25, 23, 36);
-
-$scheme-main: $themes-rose-pine-moon-bg;
-
-// Só testado com tables. $table-cell-border usa essa cor
-$border: color.scale($themes-rose-pine-moon-bg, $lightness: 10%);
-
-// Mesmo que o padrão, porém sem padding horizontal
-$pre-padding: $default-elem-margin;
-
-
-
-
-
-@import "../../vendor/bulma/bulma.sass";
-
-
-
-
-
-.title:not(:first-child) {
-  margin-top: 2em;
+// Para elementos dentro de .conteudo, que devem produzir sombras
+@mixin conteudo-sombreado {
+  @if $conteudo-sombras {
+    box-shadow: 2.5px 2.5px 5px cores.$sombra-suave;
+  }
 }
+
+
+
+
 
 h1, h2, h3, h4, h5, h6 {
   @extend .title;
 }
 
-h1 {
-  @extend .is-1;
+body {
+  // Conserta um overflow inferior no Firefox
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  background-color: $background;
 }
 
-h2 {
-  @extend .is-2;
-}
+.sidebar {
+  @extend .menu;
+  padding: 1em 0;
+  position: fixed;
+  width: get($sidebar, "width", "desktop");
+  height: 100%;
+  // Scrollbar deve ocultar automaticamente assim
+  overflow-y: auto;
 
-h3 {
-  @extend .is-3;
-}
+  background-color: get($sidebar, "bg");
+  box-shadow: 0 0 get($sidebar, "shadow-radius") cores.$sombra-suave;
 
-h4 {
-  @extend .is-4;
-}
+  // Exibir o atributo data-title acima da lista, como seu título
+  .menu-list::before {
+    @extend .menu-label;
+    text-align: center;
+    display: block;
+    content: attr(data-titulo);
+    margin-bottom: 1em;
+  }
 
-h5 {
-  @extend .is-5;
-}
+  .categoria {
+    border-radius: 5px;
+    border: 1px solid $purple;
 
-h6 {
-  @extend .is-6;
-}
-
-li {
-  // Coloca os ::marker dentro das listas (https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position)
-  list-style-position: inside;
-}
-
-table {
-  @extend .table;
-  box-shadow: inset -1.5px 1.5px 5px #0008;
-  border-radius: $table-border-radius;
-  margin: $default-elem-margin;
-}
-
-pre {
-  background-color: transparent;
-  width: fit-content;
-
-  code {
-    box-shadow: inset -1.5px 1.5px 5px #0008;
-    border-radius: $code-block-border-radius;
+    &.is-active {
+      &:hover {
+        box-shadow: 0px 0px 10px $purple;
+      }
+      box-shadow: 0px 0px 5px $purple;
+    }
   }
 }
 
-code {
-  border-radius: $code-border-radius;
+.conteudo {
+  max-height: 100%;
+
+  @extend .content;
+  padding: lista_utils.com-espaços(values(get($conteudo, "padding", "desktop")));
+
+  table {
+    @extend .table;
+    @include conteudo-sombreado;
+
+    border-radius: $table-border-radius;
+  }
+
+  code {
+    border-radius: $code-border-radius;
+  }
+
+  pre {
+    padding-left: 0;
+    padding-right: 0;
+
+    // Não cortar a sombra do code
+    overflow: visible;
+
+    code {
+      @include conteudo-sombreado;
+      border-radius: $code-block-border-radius;
+    }
+  }
 }
 
-body {
-  padding: 0% 15%;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: $background;
+@media screen {
+  // Mobile (qualquer tela no modo retrato ou de largura pequena)
+  @media (max-aspect-ratio: 1/1), screen and (max-width: 512px) {
+    .sidebar {
+      width: get($sidebar, "width", "mobile");
+    }
+
+    .conteudo {
+      padding: lista_utils.com-espaços(values(get($conteudo, "padding", "mobile")));
+    }
+
+    @if not $conteudo-blocos-largos-mobile {
+      .conteudo code {
+        max-width: min-content;
+      }
+
+      .conteudo table {
+        // min-content pode deixar colunas largas com linhas demais
+        width: auto;
+      }
+    }
+  }
+
+  // TODO: Deixar menos doentio, parece o fast inverse square root do quake.
+  //       Se existisse else pra media query tava resolvido. Isso é quase o else
+  //       da media query acima.
+  // Desktop (oposto de Mobile)
+  @media not all and (max-aspect-ratio: 1/1) {
+    @media not all and (max-width: 512px) {
+      @if not $conteudo-blocos-largos-desktop {
+        .conteudo code {
+          max-width: min-content;
+        }
+
+        .conteudo table {
+          // min-content pode deixar colunas largas com linhas demais
+          width: auto;
+        }
+      }
+    }
+  }
 }

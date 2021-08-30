@@ -1,0 +1,11 @@
+@use "sass:list";
+
+// Muda os separadores de uma lista
+@function lista-com($lista, $separator) {
+  @return list.join($lista, (), $separator);
+}
+
+// Muda os separadores de uma lista para espaços
+@function com-espaços($lista) {
+  @return lista-com($lista, "space");
+}
