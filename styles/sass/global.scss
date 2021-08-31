@@ -12,8 +12,10 @@
   $text-strong: color.scale(cores.$texto-claro, $lightness: 50%), // ? Ainda não sei como fica
   $text-light: color.scale(cores.$texto-claro, $lightness: -50%),
   $link: cores.$roxo,
+  $code: cores.$roxo-claro,
   $background: cores.$rose-pine-bg,
   $scheme-main: cores.$rose-pine-moon-bg,
+  $code-background: cores.$rose-pine-moon-bg,
   // Só testado com tables. $table-cell-border usa essa cor
   $border: color.scale(cores.$rose-pine-moon-bg, $lightness: 10%)
 );
