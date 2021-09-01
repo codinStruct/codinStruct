@@ -130,7 +130,7 @@ body {
   }
 }
 
-.conteudo {
+#conteudo {
   max-height: 100%;
 
   @extend .content;
@@ -182,16 +182,16 @@ body {
       width: get($sidebar, "width", "mobile");
     }
 
-    .conteudo {
+    #conteudo {
       padding: lista_utils.com-espaços(values(get($conteudo, "padding", "mobile")));
     }
 
     @if not $conteudo-blocos-largos-mobile {
-      .conteudo code {
+      #conteudo code {
         max-width: min-content;
       }
 
-      .conteudo table {
+      #conteudo table {
         // min-content pode deixar colunas largas com linhas demais
         width: auto;
       }
@@ -205,11 +205,11 @@ body {
   @media not all and (max-aspect-ratio: 1/1) {
     @media not all and (max-width: 512px) {
       @if not $conteudo-blocos-largos-desktop {
-        .conteudo code {
+        #conteudo code {
           max-width: min-content;
         }
 
-        .conteudo table {
+        #conteudo table {
           // min-content pode deixar colunas largas com linhas demais
           width: auto;
         }
