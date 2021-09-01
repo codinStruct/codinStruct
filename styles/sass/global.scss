@@ -133,7 +133,7 @@ body {
 #conteudo {
   max-height: 100%;
 
-  @extend .content;
+  @extend #conteudo;
   padding: lista_utils.com-espaços(values(get($conteudo, "padding", "desktop")));
 
   > ol, > ul {
