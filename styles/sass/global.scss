@@ -136,6 +136,21 @@ body {
   @extend .content;
   padding: lista_utils.com-espaços(values(get($conteudo, "padding", "desktop")));
 
+  > ol, > ul {
+    margin-left: 0;
+    > li {
+      @extend .box;
+      display: list-item;
+      list-style-position: inside;
+      border-radius: $bloco-border-radius;
+      background-color: $scheme-main;
+
+      p {
+        display: inline;
+      }
+    }
+  }
+
   table {
     @extend .table;
     @include bulma-box-shadow;
