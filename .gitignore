@@ -5,3 +5,6 @@ Projeto-Content-Converted
 styles/css/*.map
 styles/css/global.css
 styles/css/cores.css
+
+# Outros
+jsconfig.json
