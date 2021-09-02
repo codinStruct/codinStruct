@@ -1,6 +1,7 @@
-[submodule "Projeto-Content"]
-	path = Projeto-Content
-	url = https://github.com/luizffgv/Projeto-Content/
 [submodule "Projeto-MDtoHTML"]
 	path = Projeto-MDtoHTML
 	url = https://github.com/DaviAMSilva/Projeto-MDtoHTML/
+[submodule "Projeto-Content"]
+	path = Projeto-Content
+	url = https://github.com/luizffgv/Projeto-Content/
+	branch = WIP
