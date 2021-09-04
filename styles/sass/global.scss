@@ -1,109 +1,130 @@
-@use "sass:color";
-@use "sass:map" as *;
-@use "sass:math";
+@use 'sass:color';
+@use 'sass:map' as *;
+@use 'sass:math';
 
-@use "cores";
-@use "utils/lista_utils.scss" as lista_utils;
+@use "_colors";
+@use "_fonts";
+@use 'utils/_media_queries' as *;
+@use 'utils/_list_utils';
 
-@use "../../vendor/bulma/bulma.sass" as * with (
-
-  $purple: cores.$roxo,
-  $text: cores.$texto-claro,
-  $text-strong: color.scale(cores.$texto-claro, $lightness: 50%), // ? Ainda não sei como fica
-  $text-light: color.scale(cores.$texto-claro, $lightness: -50%),
-  $link: cores.$roxo,
-  $code: cores.$roxo-claro,
-  $background: cores.$rose-pine-bg,
-  $scheme-main: cores.$rose-pine-moon-bg,
-  $code-background: cores.$rose-pine-moon-bg,
-  // Só testado com tables. $table-cell-border usa essa cor
-  $border: color.scale(cores.$rose-pine-moon-bg, $lightness: 10%)
+@use '../../vendor/bulma/bulma.sass' as bulma with (
+  $family-sans-serif: "Exo 2",
+  $family-code: 'Share Tech Mono',
+  $purple: colors.$purple,
+  $text: colors.$text-light,
+  $text-strong: color.scale(colors.$text-light, $lightness: 50%),
+  $text-light: color.scale(colors.$text-light, $lightness: -50%),
+  $link: colors.$purple,
+  $code: colors.$purple-light,
+  $background: colors.$rose-pine-bg,
+  $scheme-main: colors.$rose-pine-moon-bg,
+  $code-background: colors.$rose-pine-moon-bg,
+  $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
+  $radius-large: 10px
 );
 
-
-
-
+//
+// Style settings
+//
+$desktop-box-fullwidth: false !default;
+$mobile-box-fullwidth: true !default;
 
 //
-// Configurações do estilo
+// Internal definitions
 //
-$conteudo-blocos-largos-desktop: false;
-$conteudo-blocos-largos-mobile: true;
-
-
-
-
-
-$bloco-border-radius: 15px;
-$table-border-radius: $bloco-border-radius;
-$code-block-border-radius: $bloco-border-radius;
-$code-border-radius: math.div($code-block-border-radius, 3);
-
-$conteudo-padding-horizontal: 16px;
+$content-padding-h: 16px;
 $sidebar: (
   "width": (
     "desktop": 256px,
-    "mobile": 100%
+    "mobile": 100%,
   ),
-  "bg": cores.$rose-pine-moon-bg,
-  "shadow-radius": $conteudo-padding-horizontal * 0.75
+  "bg": colors.$rose-pine-moon-bg,
+  "shadow-radius": $content-padding-h * 0.75,
 );
-$conteudo: (
-  "padding": (
-    "desktop": (
-      "top": 2em,
-      "right": $conteudo-padding-horizontal,
-      "bottom": 0,
-      // Como a barra lateral tem posição absoluta, aqui nos distanciamos dela
-      "left": get($sidebar, "width", "desktop") + $conteudo-padding-horizontal
-    ),
-    "mobile": (
-      "top": 2em,
-      "right": $conteudo-padding-horizontal,
-      "bottom": 0,
-      "left": $conteudo-padding-horizontal
+$content: (
+  // ! Pair order is important
+  "padding":
+    (
+      "desktop": (
+        "top": 2em,
+        "right": $content-padding-h,
+        "bottom": 0,
+        "left": get($sidebar, "width", "desktop") + $content-padding-h,
+      ),
+      "mobile": (
+        "top": 2em,
+        "right": $content-padding-h,
+        "bottom": 0,
+        "left": $content-padding-h,
+      ),
     )
-  )
 );
 
-
-
-
-
-// Produz as mesmas sombras que o .box do Bulma
-@mixin bulma-box-shadow {
-  box-shadow: $box-shadow; // https://bulma.io/documentation/elements/box/#variables
+@mixin box($padding: "medium") {
+  box-shadow: bulma.$box-shadow;
+  color: bulma.$box-color;
+  background-color: bulma.$box-background-color;
+  border-radius: bulma.$box-radius;
+  padding: get(
+    (
+      "micro": math.div(bulma.$box-padding, 8) math.div(bulma.$box-padding, 4),
+      "small": math.div(bulma.$box-padding, 2),
+      "medium": bulma.$box-padding,
+      "large": bulma.$box-padding * 2,
+    ),
+    $padding
+  );
 }
 
-
-
-
-
-h1, h2, h3, h4, h5, h6 {
-  @extend .title;
+@mixin box-inline {
+  @include box($padding: "micro");
+  display: inline;
+  box-shadow: none;
 }
 
-body {
-  // Conserta um overflow inferior no Firefox
-  min-height: 100%;
-  min-width: 100%;
+// Bad name because it can cause double negatives
+@mixin has-box-not-fullwidth {
+  pre {
+    width: min-content;
+  }
+
+  table {
+    // min-content might break lines way too much
+    width: auto;
+  }
+}
+
+html {
+  background-color: bulma.$background;
+}
+
+table {
+  @include box;
   overflow: hidden;
-  background-color: $background;
+
+  th {
+    background: bulma.$purple;
+  }
 }
 
 .sidebar {
   @extend .menu;
+
+  @include mobile {
+    width: get($sidebar, "width", "mobile");
+  }
+
   padding: 1em 0;
   position: fixed;
   width: get($sidebar, "width", "desktop");
   height: 100%;
-  // Scrollbar deve ocultar automaticamente assim
+  // Scrollbar should hide automatically
   overflow-y: auto;
 
   background-color: get($sidebar, "bg");
-  box-shadow: 0 0 get($sidebar, "shadow-radius") cores.$sombra-suave;
+  box-shadow: 0 0 get($sidebar, "shadow-radius") colors.$shadow;
 
-  // Exibir o atributo data-title acima da lista, como seu título
+  // Displays data-title attr above the list, as its title
   .menu-list::before {
     @extend .menu-label;
     text-align: center;
@@ -113,107 +134,90 @@ body {
   }
 
   .categoria {
-    border-radius: 5px;
-    border: 1px solid $purple;
+    @include box($padding: "small");
+    border: 1px solid bulma.$purple;
 
     i {
-      // Duração "fast" das animações do jQuery
+      // jQuery "fast" animation duration
       transition: transform 200ms ease-in-out;
     }
 
     &.is-active {
       &:hover {
-        box-shadow: 0px 0px 10px $purple;
+        box-shadow: 0 0 10px bulma.$purple;
       }
-      box-shadow: 0px 0px 5px $purple;
+      box-shadow: 0 0 5px bulma.$purple;
     }
   }
 }
 
-#conteudo {
-  max-height: 100%;
-
+#content {
   @extend .content;
-  padding: lista_utils.com-espaços(values(get($conteudo, "padding", "desktop")));
 
-  > ol, > ul {
+  @include mobile {
+    @if not $mobile-box-fullwidth {
+      @include has-box-not-fullwidth;
+    }
+
+    padding: list_utils.with-spaces(values(get($content, "padding", "mobile")));
+  }
+
+  @include desktop {
+    @if not $desktop-box-fullwidth {
+      @include has-box-not-fullwidth;
+    }
+
+    padding: list_utils.with-spaces(
+      values(get($content, "padding", "desktop"))
+    );
+  }
+
+  li {
+    list-style-position: inside;
+    &::marker {
+      color: bulma.$purple;
+    }
+  }
+
+  // Lists that aren't nested
+  > ol,
+  > ul {
+    @include box;
     margin-left: 0;
-    > li {
-      @extend .box;
-      display: list-item;
-      list-style-position: inside;
-      border-radius: $bloco-border-radius;
-      background-color: $scheme-main;
-
-      p {
-        display: inline;
-      }
-    }
   }
 
-  table {
-    @extend .table;
-    @include bulma-box-shadow;
-    border-radius: $table-border-radius;
-  }
-
-  code {
-    border-radius: $code-border-radius;
-  }
-
+  // Code block
   pre {
-    padding-left: 0;
-    padding-right: 0;
+    @include box;
+    // Remove paddings because highlightjs-line-numbers will insert a table
+    // inside the code block
+    padding: 0;
 
-    // Não cortar a sombra do code
-    overflow: visible;
+    .hljs {
+      padding: 0;
 
-    code {
-      @include bulma-box-shadow;
-      border-radius: $code-block-border-radius;
-    }
-  }
-}
+      &-ln {
+        tr:not(:first-child) td {
+          padding-top: 0;
+        }
+        tr:not(:last-child) td {
+          padding-bottom: 0;
+          border-bottom: none; // Removing the "lines"
+        }
 
-@media screen {
-  // Mobile (qualquer tela no modo retrato ou de largura pequena)
-  @media (max-aspect-ratio: 1/1), screen and (max-width: 512px) {
-    .sidebar {
-      width: get($sidebar, "width", "mobile");
-    }
-
-    #conteudo {
-      padding: lista_utils.com-espaços(values(get($conteudo, "padding", "mobile")));
-    }
-
-    @if not $conteudo-blocos-largos-mobile {
-      #conteudo code {
-        max-width: min-content;
-      }
-
-      #conteudo table {
-        // min-content pode deixar colunas largas com linhas demais
-        width: auto;
+        // Line numbers
+        &-numbers {
+          width: 1em;
+          background-color: bulma.$purple;
+          color: colors.$rose-pine-moon-bg;
+        }
       }
     }
   }
 
-  // TODO: Deixar menos doentio, parece o fast inverse square root do quake.
-  //       Se existisse else pra media query tava resolvido. Isso é quase o else
-  //       da media query acima.
-  // Desktop (oposto de Mobile)
-  @media not all and (max-aspect-ratio: 1/1) {
-    @media not all and (max-width: 512px) {
-      @if not $conteudo-blocos-largos-desktop {
-        #conteudo code {
-          max-width: min-content;
-        }
-
-        #conteudo table {
-          // min-content pode deixar colunas largas com linhas demais
-          width: auto;
-        }
-      }
-    }
+  // Inline code
+  :not(pre) code {
+    @include box-inline;
+    color: bulma.$code;
   }
 }

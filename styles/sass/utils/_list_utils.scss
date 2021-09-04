@@ -1,0 +1,11 @@
+@use "sass:list";
+
+// Change the list's separator
+@function with($lista, $separator) {
+  @return list.join($lista, (), $separator);
+}
+
+// Use spaces as the list's separator
+@function with-spaces($lista) {
+  @return with($lista, "space");
+}

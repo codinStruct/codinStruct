@@ -1,11 +1,10 @@
-# Arquivos do Projeto-Content convertidos pra HTML
+# Projeto-Content files after conversion to HTML
 Projeto-Content-Converted
 
-# CSS obtido após pré-processar o Sass
+# Automatically generated CSS
 styles/css/*.map
 styles/css/global.css
-styles/css/cores.css
 
-# Outros
+# Other
 jsconfig.json
 .vscode

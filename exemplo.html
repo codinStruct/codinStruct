@@ -1,133 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <link rel="stylesheet" href="styles/css/global.css" />
+    <link rel="stylesheet" href="styles/css/animations.css" />
 
-  <link rel="stylesheet" href="styles/css/global.css">
-  <link rel="stylesheet" href="styles/css/animacoes.css">
+    <!-- highlight.js and theme -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/ros-pine-moon.min.css"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"
+      crossorigin="anonymous"
+    ></script>
 
+    <!-- Line numbers for highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 
-  <!-- Importar o highlight.js e o tema -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/ros-pine-moon.min.css"
-    crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"
-    crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/790a3002da.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/790a3002da.js" crossorigin="anonymous"></script>
+    <!-- swiped-events (https://github.com/john-doherty/swiped-events) -->
+    <script src="vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
 
-  <!-- swiped-events (https://github.com/john-doherty/swiped-events) -->
-  <script src="vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-</head>
+  <body>
+    <aside id="barra-lateral" class="sidebar">
+      <ul class="menu-list" title="Geral" data-titulo="Geral">
+        <li>
+          <a class="icon-text">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            <span>Home</span>
+          </a>
+        </li>
+      </ul>
 
+      <ul class="menu-list" title="Linguagem C" data-titulo="Linguagem C">
+        <li>
+          <a class="categoria aberta">
+            <span class="icon">
+              <i class="fas fa-angle-up"></i>
+            </span>
+            <span>Básico</span>
+          </a>
+          <ul>
+            <li><a class="subcategoria">Introdução</a></li>
+            <li><a class="subcategoria">Primeiro programa</a></li>
+            <li><a class="subcategoria">Tipos fundamentais</a></li>
+            <li><a class="subcategoria">Variáveis</a></li>
+            <li><a class="subcategoria">Funções</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="categoria aberta is-active">
+            <span class="icon">
+              <i class="fas fa-angle-up"></i>
+            </span>
+            <span>Intermediário</span>
+          </a>
+          <ul>
+            <li><a class="subcategoria">Tipos incompletos</a></li>
+            <li><a class="subcategoria is-active">Conversões implícitas</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="categoria aberta">
+            <span class="icon">
+              <i class="fas fa-angle-up"></i>
+            </span>
+            <span>Avançado</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
 
+    <div id="content"></div>
 
+    <script>
+      $("#content").load(
+        "Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
+        () =>
+          $("#content pre code").each((i, el) => {
+            hljs.highlightElement(el),
+              hljs.lineNumbersBlock(el, { singleLine: true });
+          })
+      );
 
+      let barraLateral = document.getElementById("barra-lateral");
 
-<body>
-  <aside id="barra-lateral" class="sidebar">
-    <ul class="menu-list" title="Geral" data-titulo="Geral">
-      <li>
-        <a class="icon-text">
-          <span class="icon">
-            <i class="fas fa-home"></i>
-          </span>
-          <span>Home</span>
-        </a>
-      </li>
-    </ul>
+      // Swipes to open/close sidebar
+      document.addEventListener("swiped", function (e) {
+        switch (e.detail.dir) {
+          case "left":
+            // Sidebar swiped
+            if (barraLateral.contains(e.target)) {
+              barraLateral.classList.remove("slide-in-left-mobile");
+              barraLateral.classList.add("slide-out-left-mobile");
+            }
+            break;
 
+          case "right":
+            // Ignore swipes over horizontally scrollable elements
+            if (e.target.scrollWidth > e.target.clientWidth) return;
 
-    <ul class="menu-list" title="Linguagem C" data-titulo="Linguagem C">
-      <li>
-        <a class="categoria aberta">
-          <span class="icon">
-            <i class="fas fa-angle-down"></i>
-          </span>
-          <span>Básico</span>
-        </a>
-        <ul>
-          <li><a class="subcategoria">Introdução</a></li>
-          <li><a class="subcategoria">Primeiro programa</a></li>
-          <li><a class="subcategoria">Tipos fundamentais</a></li>
-          <li><a class="subcategoria">Variáveis</a></li>
-          <li><a class="subcategoria">Funções</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="categoria aberta is-active">
-          <span class="icon">
-            <i class="fas fa-angle-down"></i>
-          </span>
-          <span>Intermediário</span>
-        </a>
-        <ul>
-          <li><a class="subcategoria">Tipos incompletos</a></li>
-          <li><a class="subcategoria is-active">Conversões implícitas</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="categoria aberta">
-          <span class="icon">
-            <i class="fas fa-angle-down"></i>
-          </span>
-          <span>Avançado</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
+            barraLateral.classList.remove("slide-out-left-mobile");
+            barraLateral.classList.add("slide-in-left-mobile");
+            break;
+        }
+      });
+    </script>
 
-
-
-
-
-  <div id="conteudo">
-  </div>
-
-
-
-
-
-  <script>
-    $('#conteudo').load(
-      'Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html',
-      () => document.querySelectorAll('#conteudo pre code').forEach(el => hljs.highlightElement(el))
-    );
-
-    let barraLateral = document.getElementById('barra-lateral');
-
-    // Swipes para abrir e fechar a barra lateral
-    document.addEventListener('swiped', function (e) {
-      switch (e.detail.dir) {
-        case 'left':
-          if (barraLateral.contains(e.target)) { // O swipe foi na barra
-            barraLateral.classList.remove("slide-in-left-mobile");
-            barraLateral.classList.add("slide-out-left-mobile");
-          }
-          break;
-
-        case 'right':
-          // Ignorar o swipe se for acima de um elemento horizontalmente
-          // scrollável.
-          if (e.target.scrollWidth > e.target.clientWidth)
-            return;
-
-          barraLateral.classList.remove("slide-out-left-mobile");
-          barraLateral.classList.add("slide-in-left-mobile");
-          break;
-      }
-    });
-  </script>
-
-  <!-- Javascript -->
-  <script src="js/main.js"></script>
-</body>
-
+    <!-- Javascript -->
+    <script src="js/main.js"></script>
+  </body>
 </html>

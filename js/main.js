@@ -1,11 +1,11 @@
-// Animação de exibir/esconder itens da barra lateral
+// Show/hide sidebar items
 $(".categoria").on("click", function () {
-    // Trocando estado de abertura
-    $(this).toggleClass("aberta");
+  // Change opened state
+  $(this).toggleClass("aberta");
 
-    // Rodando ícone
-    $(this).find("i.fas").toggleClass("fa-rotate-180");
+  // Rotating arrow
+  $(this).find("i.fas").toggleClass("fa-rotate-180");
 
-    // Esconder/exibir filhos
-    $(this).parent().find("li").toggle("fast");
-})
+  // Show/hide children
+  $(this).parent().find("li").toggle("fast");
+});
