@@ -1,10 +1,11 @@
 // Show/hide sidebar items
 $(".categoria").on("click", function () {
-  // Change opened state
-  $(this).toggleClass("aberta");
-
-  // Rotating arrow
-  $(this).find("i.fas").toggleClass("fa-rotate-180");
+  $(this)
+    // Change opened state
+    .toggleClass("aberta")
+    // Rotate arrow
+    .find("i.fas")
+    .toggleClass("fa-rotate-180");
 
   // Show/hide children
   $(this).parent().find("li").toggle("fast");
@@ -14,11 +15,14 @@ $(".categoria").on("click", function () {
 // TODO: In the future this loading will be done dynamically depending on the page visited
 $("#content").load(
   "/Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
-  () =>
-    $("#content pre code").each((i, el) => {
-      hljs.highlightElement(el);
-      hljs.lineNumbersBlock(el, { singleLine: true });
-    })
+  function () {
+    $(this)
+      .find("pre code")
+      .each((_, el) => {
+        hljs.highlightElement(el);
+        hljs.lineNumbersBlock(el, { singleLine: true });
+      });
+  }
 );
 
 // Swipes to open/close sidebar
