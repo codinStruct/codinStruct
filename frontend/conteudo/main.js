@@ -27,11 +27,8 @@ let barraLateral = $("#barra-lateral");
 $(document).on("swiped", function (e) {
   switch (e.detail.dir) {
     case "left":
-      // Sidebar swiped
-      if ($.contains(barraLateral[0], e.target)) {
-        barraLateral.removeClass("slide-in-left-mobile");
-        barraLateral.addClass("slide-out-left-mobile");
-      }
+      barraLateral.removeClass("slide-in-left-mobile");
+      barraLateral.addClass("slide-out-left-mobile");
       break;
 
     case "right":
