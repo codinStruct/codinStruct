@@ -177,8 +177,8 @@ li {
 
   text-align: center;
   font-size: larger;
-}
 
-.main-nav-item {
-  background-color: bulma.$purple;
+  &-main {
+    background-color: bulma.$purple;
+  }
 }
