@@ -2,12 +2,10 @@
 @use 'sass:map' as *;
 @use 'sass:math';
 
-@use "_colors";
 @use "_fonts";
-@use 'utils/_media_queries' as *;
-@use 'utils/_list_utils';
+@use "_colors";
 
-@use '../../vendor/bulma/bulma.sass' as bulma with (
+@use '../../vendor/bulma/bulma' with (
   $family-sans-serif: "Exo 2",
   $family-code: 'Share Tech Mono',
   $purple: colors.$purple,
@@ -24,17 +22,8 @@
   $radius-large: 10px
 );
 
-//
-// Style settings
-//
-$desktop-box-fullwidth: false !default;
-$mobile-box-fullwidth: true !default;
-
-//
-// Internal definitions
-//
-$sidebar-width-desktop: 256px;
-$sidebar-width-mobile: 80%;
+@forward "_colors" as colors-*;
+@forward '../../vendor/bulma/bulma.sass' as bulma-*;
 
 @mixin box($padding: "medium") {
   // Partially inherit Bulma's .box properties
@@ -56,155 +45,4 @@ $sidebar-width-mobile: 80%;
   @include box($padding: "micro");
   display: inline;
   box-shadow: none;
-}
-
-// Bad name because it can cause double negatives
-@mixin has-box-not-fullwidth {
-  pre {
-    width: min-content;
-  }
-
-  table {
-    // min-content might break lines way too much
-    width: auto;
-  }
-}
-
-html {
-  background-color: bulma.$background;
-}
-
-table {
-  @include box;
-  overflow: hidden;
-
-  th {
-    background: bulma.$purple;
-  }
-}
-
-.sidebar {
-  @extend .menu;
-
-  @include print {
-    display: none;
-  }
-
-  @include mobile {
-    width: $sidebar-width-mobile;
-  }
-
-  width: $sidebar-width-desktop;
-  padding: 1em 0;
-  position: fixed;
-  height: 100%;
-  // Scrollbar should hide automatically
-  overflow-y: auto;
-
-  background-color: colors.$rose-pine-moon-bg;
-  box-shadow: 0 0 24px colors.$shadow;
-
-  // Displays data-title attr above the list, as its title
-  .menu-list::before {
-    @extend .menu-label;
-    text-align: center;
-    display: block;
-    content: attr(data-titulo);
-    margin-bottom: 1em;
-  }
-
-  .categoria {
-    @include box($padding: "small");
-    border: 1px solid bulma.$purple;
-
-    i {
-      // jQuery "fast" animation duration
-      transition: transform 200ms ease-in-out;
-    }
-
-    &.is-active {
-      &:hover {
-        box-shadow: 0 0 10px bulma.$purple;
-      }
-      box-shadow: 0 0 5px bulma.$purple;
-    }
-  }
-}
-
-#main {
-  @include desktop {
-    margin-left: $sidebar-width-desktop;
-  }
-}
-
-#content {
-  @extend .content;
-
-  @include mobile {
-    @if not $mobile-box-fullwidth {
-      @include has-box-not-fullwidth;
-    }
-  }
-
-  @include desktop {
-    @if not $desktop-box-fullwidth {
-      @include has-box-not-fullwidth;
-    }
-
-    // Certer horizontally
-    margin-left: auto;
-    margin-right: auto;
-
-    max-width: max(25%, 850px);
-  }
-
-  padding: 2em 3em;
-
-  li {
-    list-style-position: inside;
-    &::marker {
-      color: bulma.$purple;
-    }
-  }
-
-  // Lists that aren't nested
-  > ol,
-  > ul {
-    @include box;
-    margin-left: 0;
-  }
-
-  // Code block
-  pre {
-    @include box;
-    // Remove paddings because highlightjs-line-numbers will insert a table
-    // inside the code block
-    padding: 0;
-
-    .hljs {
-      padding: 0;
-
-      &-ln {
-        tr:not(:first-child) td {
-          padding-top: 0;
-        }
-        tr:not(:last-child) td {
-          padding-bottom: 0;
-          border-bottom: none; // Removing the "lines"
-        }
-
-        // Line numbers
-        &-numbers {
-          width: 1em;
-          background-color: bulma.$purple;
-          color: colors.$rose-pine-moon-bg;
-        }
-      }
-    }
-  }
-
-  // Inline code
-  :not(pre) code {
-    @include box-inline;
-  }
 }

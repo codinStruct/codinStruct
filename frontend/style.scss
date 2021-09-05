@@ -1,59 +1,13 @@
-@use 'sass:color';
-@use 'sass:map' as *;
-@use 'sass:math';
-
-@use "../styles/sass/_colors";
-@use "../styles/sass/_fonts";
-@use '../styles/sass/utils/_media_queries' as *;
-@use '../styles/sass/utils/_list_utils';
-
-@use '../vendor/bulma/bulma.sass' as bulma with (
-  $family-sans-serif: "Exo 2",
-  $family-code: 'Share Tech Mono',
-  $purple: colors.$purple,
-  $text: colors.$text-light,
-  $text-strong: color.scale(colors.$text-light, $lightness: 50%),
-  $text-light: color.scale(colors.$text-light, $lightness: -50%),
-  $hr-background-color: colors.$purple,
-  $link: colors.$purple,
-  $code: colors.$purple-light,
-  $background: colors.$rose-pine-bg,
-  $scheme-main: colors.$rose-pine-moon-bg,
-  $code-background: colors.$rose-pine-moon-bg,
-  $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
-  $radius-large: 10px
-);
-
-@mixin box($padding: "medium") {
-  box-shadow: bulma.$box-shadow;
-  color: bulma.$box-color;
-  background-color: bulma.$box-background-color;
-  border-radius: bulma.$box-radius;
-  padding: get(
-    (
-      "micro": math.div(bulma.$box-padding, 8) math.div(bulma.$box-padding, 4),
-      "small": math.div(bulma.$box-padding, 2),
-      "medium": bulma.$box-padding,
-      "large": bulma.$box-padding * 2,
-    ),
-    $padding
-  );
-}
-
-//
-// Style settings
-//
-$desktop-box-fullwidth: false !default;
-$mobile-box-fullwidth: true !default;
+@use "../styles/sass/global" as *;
 
 html {
-  background-color: bulma.$background;
+  background-color: $bulma-background;
   overflow: auto;
   scroll-behavior: smooth;
 }
 
 header {
-  background-color: bulma.$code-background;
+  background-color: $bulma-code-background;
   width: 100%;
   height: 100px;
   position: absolute;
@@ -62,7 +16,7 @@ header {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  box-shadow: 0 0 24px colors.$shadow;
+  box-shadow: 0 0 24px $colors-shadow;
 }
 
 li {
@@ -87,7 +41,7 @@ li {
   top: 0;
   bottom: 0;
 
-  border-radius: bulma.$box-radius;
+  border-radius: $bulma-box-radius;
 }
 
 #navigation {
@@ -98,6 +52,11 @@ li {
   top: 0;
   bottom: 0;
   right: 12.5px;
+
+  a:not(:hover) {
+    // Não sei o motivo de precisar especificar isso agora
+    color: $bulma-text;
+  }
 }
 
 #first-page {
@@ -109,13 +68,13 @@ li {
 #second-page {
   height: 100vh;
   width: 100%;
-  background-color: bulma.$background;
+  background-color: $bulma-background;
 }
 
 #introduction {
-  background-color: rgba(bulma.$background, 0.9);
-  border-radius: bulma.$box-radius;
-  border: 1px solid bulma.$purple;
+  background-color: rgba($bulma-background, 0.9);
+  border-radius: $bulma-box-radius;
+  border: 1px solid $bulma-purple;
 
   padding: 30px;
 
@@ -128,7 +87,8 @@ li {
 
   overflow: auto;
 
-  box-shadow: 0 0 24px colors.$shadow;
+  box-shadow: 0 0 24px $colors-shadow;
+  backdrop-filter: blur(2px);
 }
 
 #introduction h1 {
@@ -142,8 +102,8 @@ li {
   height: 50px;
   padding-top: 10px;
 
-  background-color: rgba(bulma.$purple, 0.5);
-  border-radius: bulma.$box-radius;
+  background-color: rgba($bulma-purple, 0.5);
+  border-radius: $bulma-box-radius;
 
   position: absolute;
   bottom: 0;
@@ -165,7 +125,7 @@ li {
 
 .nav-item {
   @include box($padding: "small");
-  border: 1px solid bulma.$purple;
+  border: 1px solid $bulma-purple;
 
   height: 60px;
   line-height: 40px;
@@ -179,6 +139,6 @@ li {
   font-size: larger;
 
   &-main {
-    background-color: bulma.$purple;
+    background-color: $bulma-purple;
   }
 }
