@@ -1,5 +1,5 @@
 // Show/hide sidebar items
-$(".categoria").click(function () {
+$(".categoria").on("click", function () {
   $(this)
     // Change opened state
     .toggleClass("aberta")
@@ -31,14 +31,16 @@ let barraLateral = $("#barra-lateral");
 $(document).on("swiped", function (e) {
   switch (e.detail.dir) {
     case "left":
-      // .stop so animations don't queue
-      barraLateral.stop(false, true).hide("slide");
+      barraLateral.removeClass("slide-in-left-mobile");
+      barraLateral.addClass("slide-out-left-mobile");
       break;
 
     case "right":
       // Ignore swipes over horizontally scrollable elements
       if (e.target.scrollWidth > e.target.clientWidth) return;
-      barraLateral.stop(false, true).show("slide");
+
+      barraLateral.removeClass("slide-out-left-mobile");
+      barraLateral.addClass("slide-in-left-mobile");
       break;
   }
 });
