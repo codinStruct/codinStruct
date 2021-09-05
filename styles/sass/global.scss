@@ -32,37 +32,12 @@ $mobile-box-fullwidth: true !default;
 //
 // Internal definitions
 //
-$content-padding-h: 32px;
-$sidebar: (
-  "width": (
-    "desktop": 256px,
-    "mobile": 80%,
-  ),
-  "bg": colors.$rose-pine-moon-bg,
-  "shadow-radius": $content-padding-h * 0.75,
-);
-$content: (
-  // ! Pair order is important
-  "padding":
-    (
-      "desktop": (
-        "top": 3em,
-        "right": $content-padding-h,
-        "bottom": 0,
-        "left": get($sidebar, "width", "desktop") + $content-padding-h,
-      ),
-      "mobile": (
-        "top": 3em,
-        "right": $content-padding-h,
-        "bottom": 0,
-        "left": $content-padding-h,
-      ),
-    )
-);
+$sidebar-width-desktop: 256px;
+$sidebar-width-mobile: 80%;
 
 @mixin box($padding: "medium") {
+  // Partially inherit Bulma's .box properties
   box-shadow: bulma.$box-shadow;
-  color: bulma.$box-color;
   background-color: bulma.$box-background-color;
   border-radius: bulma.$box-radius;
   padding: get(
@@ -110,19 +85,23 @@ table {
 .sidebar {
   @extend .menu;
 
-  @include mobile {
-    width: get($sidebar, "width", "mobile");
+  @include print {
+    display: none;
   }
 
+  @include mobile {
+    width: $sidebar-width-mobile;
+  }
+
+  width: $sidebar-width-desktop;
   padding: 1em 0;
   position: fixed;
-  width: get($sidebar, "width", "desktop");
   height: 100%;
   // Scrollbar should hide automatically
   overflow-y: auto;
 
-  background-color: get($sidebar, "bg");
-  box-shadow: 0 0 get($sidebar, "shadow-radius") colors.$shadow;
+  background-color: colors.$rose-pine-moon-bg;
+  box-shadow: 0 0 24px colors.$shadow;
 
   // Displays data-title attr above the list, as its title
   .menu-list::before {
@@ -151,6 +130,12 @@ table {
   }
 }
 
+#main {
+  @include desktop {
+    margin-left: $sidebar-width-desktop;
+  }
+}
+
 #content {
   @extend .content;
 
@@ -158,8 +143,6 @@ table {
     @if not $mobile-box-fullwidth {
       @include has-box-not-fullwidth;
     }
-
-    padding: list_utils.with-spaces(values(get($content, "padding", "mobile")));
   }
 
   @include desktop {
@@ -167,13 +150,14 @@ table {
       @include has-box-not-fullwidth;
     }
 
-    margin-left: 20%;
-    width: max(60%, 750px);
+    // Certer horizontally
+    margin-left: auto;
+    margin-right: auto;
 
-    padding: list_utils.with-spaces(
-      values(get($content, "padding", "desktop"))
-    );
+    max-width: max(25%, 850px);
   }
+
+  padding: 2em 3em;
 
   li {
     list-style-position: inside;
@@ -221,6 +205,5 @@ table {
   // Inline code
   :not(pre) code {
     @include box-inline;
-    color: bulma.$code;
   }
 }
