@@ -32,11 +32,11 @@ $mobile-box-fullwidth: true !default;
 //
 // Internal definitions
 //
-$content-padding-h: 16px;
+$content-padding-h: 32px;
 $sidebar: (
   "width": (
     "desktop": 256px,
-    "mobile": 100%,
+    "mobile": 80%,
   ),
   "bg": colors.$rose-pine-moon-bg,
   "shadow-radius": $content-padding-h * 0.75,
@@ -46,13 +46,13 @@ $content: (
   "padding":
     (
       "desktop": (
-        "top": 2em,
+        "top": 3em,
         "right": $content-padding-h,
         "bottom": 0,
         "left": get($sidebar, "width", "desktop") + $content-padding-h,
       ),
       "mobile": (
-        "top": 2em,
+        "top": 3em,
         "right": $content-padding-h,
         "bottom": 0,
         "left": $content-padding-h,
@@ -166,6 +166,9 @@ table {
     @if not $desktop-box-fullwidth {
       @include has-box-not-fullwidth;
     }
+
+    margin-left: 20%;
+    width: max(60%, 750px);
 
     padding: list_utils.with-spaces(
       values(get($content, "padding", "desktop"))

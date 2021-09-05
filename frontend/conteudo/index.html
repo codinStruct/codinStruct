@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="styles/css/global.css" />
-    <link rel="stylesheet" href="styles/css/animations.css" />
+    <link rel="stylesheet" href="/styles/css/global.css" />
+    <link rel="stylesheet" href="/styles/css/animations.css" />
 
     <!-- highlight.js and theme -->
     <link
@@ -29,7 +29,7 @@
     ></script>
 
     <!-- swiped-events (https://github.com/john-doherty/swiped-events) -->
-    <script src="vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
+    <script src="/vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
 
     <!-- jQuery -->
     <script
@@ -91,43 +91,11 @@
       </ul>
     </aside>
 
-    <div id="content"></div>
-
-    <script>
-      $("#content").load(
-        "Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
-        () =>
-          $("#content pre code").each((i, el) => {
-            hljs.highlightElement(el),
-              hljs.lineNumbersBlock(el, { singleLine: true });
-          })
-      );
-
-      let barraLateral = document.getElementById("barra-lateral");
-
-      // Swipes to open/close sidebar
-      document.addEventListener("swiped", function (e) {
-        switch (e.detail.dir) {
-          case "left":
-            // Sidebar swiped
-            if (barraLateral.contains(e.target)) {
-              barraLateral.classList.remove("slide-in-left-mobile");
-              barraLateral.classList.add("slide-out-left-mobile");
-            }
-            break;
-
-          case "right":
-            // Ignore swipes over horizontally scrollable elements
-            if (e.target.scrollWidth > e.target.clientWidth) return;
-
-            barraLateral.classList.remove("slide-out-left-mobile");
-            barraLateral.classList.add("slide-in-left-mobile");
-            break;
-        }
-      });
-    </script>
+    <main id="main">
+      <article id="content"></article>
+    </main>
 
     <!-- Javascript -->
-    <script src="js/main.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
