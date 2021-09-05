@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Background</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"
+      integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      // Adapted from a sketch from by yasai: https://openprocessing.org/sketch/494102
+
+      var particles_a = [];
+      var particles_b = [];
+      var particles_c = [];
+      var nums = 750;
+      var noiseScale = 400;
+
+      var backgroundColor;
+      var particleColors = [];
+
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+        background(backgroundColor);
+      }
+
+      function mouseMoved(event) {
+        console.log(event);
+      }
+
+      // Colors used in the site with some alpha
+      function setup() {
+        backgroundColor = color("#1917240f");
+        particleColors = [
+          color("#6b4f8f0f"),
+          color("#9d7ec20f"),
+          color("#c9d1d90f"),
+        ];
+
+        var canvas = createCanvas(windowWidth, windowHeight);
+
+        background(backgroundColor);
+        for (var i = 0; i < nums; i++) {
+          particles_a[i] = new Particle(random(0, width), random(0, height));
+          particles_b[i] = new Particle(random(0, width), random(0, height));
+          particles_c[i] = new Particle(random(0, width), random(0, height));
+        }
+      }
+
+      function draw() {
+        smooth();
+        for (var i = 0; i < nums; i++) {
+          var radius = map(i, 0, nums, 1, 2);
+          var weight = map(i, 0, nums, 0.05, 2);
+
+          strokeWeight(weight);
+          stroke(particleColors[0]);
+          particles_a[i].move();
+          particles_a[i].display(radius);
+          particles_a[i].checkEdge();
+
+          strokeWeight(weight);
+          stroke(particleColors[1]);
+          particles_b[i].move();
+          particles_b[i].display(radius);
+          particles_b[i].checkEdge();
+
+          strokeWeight(weight);
+          stroke(particleColors[2]);
+          particles_c[i].move();
+          particles_c[i].display(radius);
+          particles_c[i].checkEdge();
+        }
+      }
+
+      function Particle(x, y) {
+        this.dir = createVector(0, 0);
+        this.vel = createVector(0, 0);
+        this.pos = createVector(x, y);
+        this.last_pos = this.pos;
+        this.speed = 0.4;
+
+        this.move = function () {
+          var angle =
+            noise(this.pos.x / noiseScale, this.pos.y / noiseScale) *
+            TWO_PI *
+            noiseScale;
+
+          this.last_pos = this.pos;
+
+          this.dir.x = cos(angle);
+          this.dir.y = sin(angle);
+          this.vel = this.dir.copy();
+
+          this.vel.mult(this.speed);
+          this.pos.add(this.vel);
+        };
+
+        this.checkEdge = function () {
+          if (
+            this.pos.x > width ||
+            this.pos.x < 0 ||
+            this.pos.y > height ||
+            this.pos.y < 0
+          ) {
+            this.pos.x = random(50, width);
+            this.pos.y = random(50, height);
+          }
+        };
+
+        this.display = function (r) {
+          line(this.pos.x, this.pos.y, this.last_pos.x, this.last_pos.y);
+        };
+      }
+    </script>
+    <style>
+      * {
+        margin: 0px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>

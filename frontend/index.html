@@ -6,7 +6,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="/styles/css/global.css" />
-    <link rel="stylesheet" href="/styles/css/animations.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <!-- highlight.js and theme -->
     <link
@@ -38,5 +38,43 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body></body>
+  <body>
+    <iframe src="background.html" title="background" id="background"></iframe>
+    <header>
+      <img src="/logo.jpg" alt="Logo" id="logo" />
+      <nav id="navigation">
+        <li class="nav-list">
+          <a href="/frontend/" class="nav-item main-nav-item">Sobre</a>
+          <a href="/frontend/aleatorio" class="nav-item">Aleatório</a>
+          <a href="/frontend/linguagens" class="nav-item">Linguagens</a>
+          <div></div>
+        </li>
+      </nav>
+    </header>
+    <main>
+      <div id="first-page">
+        <div id="introduction">
+          <h1>Nome do Projeto</h1>
+          <br />
+          <hr />
+          <br />
+          <p class="summary">
+            Isso é uma descrição detalhada e sucinta sobre o que o projeto é e
+            aquilo que ele pretende ser.
+          </p>
+          <p class="summary">
+            Isso é uma descrição detalhada e sucinta sobre o que o projeto é e
+            aquilo que ele pretende ser.
+          </p>
+        </div>
+
+        <div id="next-page-button">
+          <i class="fa fa-angle-down fa-2x"></i>
+        </div>
+      </div>
+      <div id="second-page">UNDER CONSTRUCTION</div>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
 </html>

@@ -1,0 +1,187 @@
+@use 'sass:color';
+@use 'sass:map' as *;
+@use 'sass:math';
+
+@use "../styles/sass/_colors";
+@use "../styles/sass/_fonts";
+@use '../styles/sass/utils/_media_queries' as *;
+@use '../styles/sass/utils/_list_utils';
+
+@use '../vendor/bulma/bulma.sass' as bulma with (
+  $family-sans-serif: "Exo 2",
+  $family-code: 'Share Tech Mono',
+  $purple: colors.$purple,
+  $text: colors.$text-light,
+  $text-strong: color.scale(colors.$text-light, $lightness: 50%),
+  $text-light: color.scale(colors.$text-light, $lightness: -50%),
+  $link: colors.$purple,
+  $code: colors.$purple-light,
+  $background: colors.$rose-pine-bg,
+  $scheme-main: colors.$rose-pine-moon-bg,
+  $code-background: colors.$rose-pine-moon-bg,
+  $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
+  $radius-large: 10px
+);
+
+@mixin box($padding: "medium") {
+  box-shadow: bulma.$box-shadow;
+  color: bulma.$box-color;
+  background-color: bulma.$box-background-color;
+  border-radius: bulma.$box-radius;
+  padding: get(
+    (
+      "micro": math.div(bulma.$box-padding, 8) math.div(bulma.$box-padding, 4),
+      "small": math.div(bulma.$box-padding, 2),
+      "medium": bulma.$box-padding,
+      "large": bulma.$box-padding * 2,
+    ),
+    $padding
+  );
+}
+
+//
+// Style settings
+//
+$desktop-box-fullwidth: false !default;
+$mobile-box-fullwidth: true !default;
+
+html {
+  background-color: bulma.$background;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+header {
+  background-color: bulma.$code-background;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+
+  // Only the bottom border
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  box-shadow: 0 0 24px colors.$shadow;
+}
+
+li {
+  list-style-type: none;
+}
+
+hr {
+  background-color: bulma.$purple;
+}
+
+// Makes the background sketch appear at the bottom of everything else
+#background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+}
+
+#logo {
+  height: 75px;
+  margin: auto;
+  margin-left: 12.5px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  border-radius: bulma.$box-radius;
+}
+
+#navigation {
+  height: fit-content;
+  margin: auto;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 12.5px;
+}
+
+#first-page {
+  height: 100vh;
+  width: 100%;
+  // background-color: red;
+}
+
+#second-page {
+  height: 100vh;
+  width: 100%;
+  background-color: bulma.$background;
+}
+
+#introduction {
+  background-color: rgba(bulma.$background, 0.9);
+  border-radius: bulma.$box-radius;
+  border: 1px solid bulma.$purple;
+
+  padding: 30px;
+
+  position: relative;
+  top: 25%;
+  margin: auto;
+
+  width: max(50%, 600px);
+  height: max(50%, 300px);
+
+  overflow: auto;
+
+  box-shadow: 0 0 24px colors.$shadow;
+}
+
+#introduction h1 {
+  font-size: 3em;
+
+  text-align: center;
+}
+
+#next-page-button {
+  width: max(7%, 50px);
+  height: 50px;
+  padding-top: 10px;
+
+  background-color: rgba(bulma.$purple, 0.5);
+  border-radius: bulma.$box-radius;
+
+  position: absolute;
+  bottom: 0;
+  left: 46.5%;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.summary {
+  font-size: 1.5em;
+
+  margin-left: max(15%, 15px);
+  margin-right: max(15%, 15px);
+
+  text-align: justify;
+}
+
+.nav-item {
+  @include box($padding: "small");
+  border: 1px solid bulma.$purple;
+
+  height: 60px;
+  line-height: 40px;
+
+  float: right;
+  min-width: 100px;
+
+  margin: 15px;
+
+  text-align: center;
+  font-size: larger;
+}
+
+.main-nav-item {
+  background-color: bulma.$purple;
+}
