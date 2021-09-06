@@ -1,4 +1,4 @@
-@use "../styles/sass/global" as *;
+@use "styles/sass/global" as *;
 
 @mixin backdrop-blur($amount: 2px) {
   backdrop-filter: blur($amount);
@@ -76,15 +76,11 @@ li {
 }
 
 #introduction {
-  @include backdrop-blur(3px);
-
-  background-color: rgba($bulma-background, 0.75);
+  background-color: transparent;
   border-radius: $bulma-box-radius;
   border: 1px solid $bulma-purple;
 
   padding: 30px;
-
-  overflow: auto;
 
   position: relative;
   top: 25%;
@@ -95,25 +91,49 @@ li {
 
   box-shadow: 0 0 24px $colors-shadow;
 
+  transform-style: preserve-3d;
+  transition: transform 400ms ease-out;
+
   h1 {
     font-size: 3em;
 
     text-align: center;
   }
+
+  > * {
+    transition: transform 400ms ease-out;
+  }
+
+  // Background must be in a child element because backdrop-filter flattens the elements
+  &::before {
+    // Chromium seems to flatten all parents during transitions when a backdrop
+    // filter is applied to an element. I still don't know if it's a bug, so
+    // comment this line if it happens for you.
+    @include backdrop-blur(3px);
+
+    z-index: -1;
+    background-color: rgba($bulma-background, 0.75);
+
+    content: ""; // Element ignored if content == none
+    position: absolute;
+    // Fill parent
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 #next-page-button {
-  @include box;
-  @include backdrop-blur;
-
   width: max(7%, 50px);
   height: 50px;
   padding-top: 10px;
 
-  background-color: rgba($bulma-purple, 0.5);
+  background-color: rgba($bulma-purple, 0.25);
+  border-radius: $bulma-box-radius;
 
   position: absolute;
-  bottom: 1vh;
+  bottom: 1em;
   left: 46.5%;
 
   text-align: center;

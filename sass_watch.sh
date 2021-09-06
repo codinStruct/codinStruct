@@ -1,2 +1,2 @@
 #!/bin/bash
-sass --watch styles/sass/:styles/css/ frontend/
+sass --watch frontend/styles/sass/:frontend/styles/css/ frontend/

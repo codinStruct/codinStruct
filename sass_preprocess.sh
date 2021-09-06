@@ -1,2 +1,2 @@
 #!/bin/bash
-sass styles/sass/:styles/css/ frontend/
+sass frontend/styles/sass/:frontend/styles/css/ frontend/
