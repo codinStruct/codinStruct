@@ -40,14 +40,33 @@
   <body>
     <iframe src="background.html" title="background" id="background"></iframe>
     <header>
-      <img src="./images/logo.jpg" alt="Logo" id="logo" />
-      <nav id="navigation">
-        <li class="nav-list">
-          <a href="/frontend/" class="nav-item nav-item-main">Sobre</a>
-          <a href="/frontend/aleatorio" class="nav-item">Aleatório</a>
-          <a href="/frontend/linguagens" class="nav-item">Linguagens</a>
-          <div></div>
-        </li>
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <img
+            class="navbar-item"
+            src="./images/logo.jpg"
+            alt="Logo"
+            id="logo"
+          />
+
+          <a class="navbar-burger" data-target="navigation-menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu" id="navigation-menu">
+          <div class="navbar-end">
+            <a class="navbar-item button is-primary" href="/frontend/">Sobre</a>
+            <a class="navbar-item button" href="/frontend/aleatorio"
+              >Aleatório</a
+            >
+            <a class="navbar-item button" href="/frontend/linguagens"
+              >Linguagens</a
+            >
+          </div>
+        </div>
       </nav>
     </header>
     <main>
@@ -68,7 +87,7 @@
         </div>
 
         <div id="next-page-button">
-          <i class="fa fa-angle-down fa-2x"></i>
+          <span class="fa fa-angle-down fa-2x"></span>
         </div>
       </div>
       <div id="second-page">UNDER CONSTRUCTION</div>

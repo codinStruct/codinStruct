@@ -19,7 +19,10 @@
   $scheme-main: colors.$rose-pine-moon-bg,
   $code-background: colors.$rose-pine-moon-bg,
   $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
-  $radius-large: 10px
+  $radius-large: 10px,
+  $navbar-burger-color: colors.$text-light,
+  $button-active-color: colors.$purple,
+  $primary: colors.$purple
 );
 
 @forward "_colors" as colors-*;

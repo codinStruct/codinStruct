@@ -64,18 +64,17 @@
           var weight = map(i, 0, nums, 0.05, 2);
 
           strokeWeight(weight);
+
           stroke(particleColors[0]);
           particles_a[i].move();
           particles_a[i].display(radius);
           particles_a[i].checkEdge();
 
-          strokeWeight(weight);
           stroke(particleColors[1]);
           particles_b[i].move();
           particles_b[i].display(radius);
           particles_b[i].checkEdge();
 
-          strokeWeight(weight);
           stroke(particleColors[2]);
           particles_c[i].move();
           particles_c[i].display(radius);

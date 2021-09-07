@@ -12,8 +12,8 @@ html {
 
 header {
   background-color: $bulma-code-background;
-  width: 100%;
   height: 100px;
+  width: 100%;
   position: absolute;
 
   // Only the bottom border
@@ -21,10 +21,6 @@ header {
   border-bottom-right-radius: 20px;
 
   box-shadow: 0 0 24px $colors-shadow;
-}
-
-li {
-  list-style-type: none;
 }
 
 // Makes the background sketch appear at the bottom of everything else
@@ -37,36 +33,15 @@ li {
 }
 
 #logo {
-  height: 75px;
-  margin: auto;
-  margin-left: 12.5px;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-
+  height: 80px;
   border-radius: $bulma-box-radius;
-}
-
-#navigation {
-  height: fit-content;
-  margin: auto;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 12.5px;
-
-  a:not(:hover) {
-    // I don't know why we need to manually specify this now
-    color: $bulma-text;
-  }
+  padding: 0;
+  margin: 10px;
 }
 
 #first-page {
   height: 100vh;
   width: 100%;
-  // background-color: red;
 }
 
 #second-page {
@@ -90,7 +65,8 @@ li {
   top: 25%;
   margin: auto;
 
-  width: max(50%, 600px);
+  // Its 50% but not less than 600px unless it's smaller than the screen
+  width: min(max(50%, 600px), 100%);
   height: max(50%, 300px);
 
   box-shadow: 0 0 24px $colors-shadow;
@@ -106,9 +82,9 @@ li {
   @include box;
   @include backdrop-blur;
 
-  width: max(7%, 50px);
+  width: 7%;
   height: 50px;
-  padding-top: 10px;
+  // padding-top: 10px;
 
   background-color: rgba($bulma-purple, 0.5);
 
@@ -126,6 +102,14 @@ li {
     box-shadow: 0 0 5px $bulma-purple;
     color: black;
   }
+
+  span {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+  }
 }
 
 .summary {
@@ -137,22 +121,22 @@ li {
   text-align: justify;
 }
 
-.nav-item {
-  @include box($padding: "small");
-  border: 1px solid $bulma-purple;
-
-  height: 60px;
-  line-height: 40px;
-
-  float: right;
-  min-width: 100px;
-
-  margin: 15px;
-
-  text-align: center;
-  font-size: larger;
-
-  &-main {
-    background-color: $bulma-purple;
+.navbar {
+  .navbar-brand {
+    .navbar-burger {
+      height: 50%;
+      top: 25%;
+      right: 0;
+      position: absolute;
+    }
+  }
+  .navbar-menu {
+    .navbar-end {
+      .navbar-item.button {
+        height: 50%;
+        top: 25%;
+        margin-right: 50px;
+      }
+    }
   }
 }
