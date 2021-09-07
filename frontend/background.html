@@ -11,11 +11,11 @@
     <script>
       // Adapted from a sketch from by yasai: https://openprocessing.org/sketch/494102
 
-      var particles_a = [];
-      var particles_b = [];
-      var particles_c = [];
+      var particleArrays = [[], [], []];
       var nums = 0;
       var noiseScale = 400;
+      // Left-closed interval of possible particle speeds
+      var speedLimits = [0.2, 1];
 
       var backgroundColor;
       var particleColors = [];
@@ -42,18 +42,11 @@
 
         // Particles have a 100px area to go outside the viewing area for better edges
         for (var i = 0; i < nums; i++) {
-          particles_a[i] = new Particle(
-            random(-100, width + 100),
-            random(-100, height + 100)
-          );
-          particles_b[i] = new Particle(
-            random(-100, width + 100),
-            random(-100, height + 100)
-          );
-          particles_c[i] = new Particle(
-            random(-100, width + 100),
-            random(-100, height + 100)
-          );
+          for (var pArray of particleArrays)
+            pArray[i] = new Particle(
+              random(-100, width + 100),
+              random(-100, height + 100)
+            );
         }
       }
 
@@ -65,20 +58,12 @@
 
           strokeWeight(weight);
 
-          stroke(particleColors[0]);
-          particles_a[i].move();
-          particles_a[i].display(radius);
-          particles_a[i].checkEdge();
-
-          stroke(particleColors[1]);
-          particles_b[i].move();
-          particles_b[i].display(radius);
-          particles_b[i].checkEdge();
-
-          stroke(particleColors[2]);
-          particles_c[i].move();
-          particles_c[i].display(radius);
-          particles_c[i].checkEdge();
+          for (var [pArrayI, pArray] of particleArrays.entries()) {
+            stroke(particleColors[pArrayI]);
+            pArray[i].move();
+            pArray[i].display(radius);
+            pArray[i].checkEdge();
+          }
         }
       }
 
@@ -87,7 +72,6 @@
         this.vel = createVector(0, 0);
         this.pos = createVector(x, y);
         this.last_pos = this.pos;
-        this.speed = 0.4;
         this.angle =
           noise(this.pos.x / noiseScale, this.pos.y / noiseScale) *
           TWO_PI *
@@ -108,7 +92,19 @@
           this.dir.y = sin(this.angle / 2);
           this.vel = this.dir.copy();
 
-          this.vel.mult(this.speed);
+          // Speed based on position
+          this.vel.mult(
+            map(
+              noise(this.pos.x / noiseScale, this.pos.y / noiseScale),
+              // The noise values are somewhat similar to a normal distribution
+              //  so ignoring the extremes (e.g. < 0.3 and >= 0.7) will cause
+              //  our speedLimits range to better covered
+              0.3,
+              0.7,
+              speedLimits[0],
+              speedLimits[1]
+            )
+          );
           this.pos.add(this.vel);
         };
 
