@@ -65,6 +65,9 @@ main {
   margin-right: auto;
   border-radius: 20px;
   background-color: $bulma-background;
+
+  // Smooth edges
+  box-shadow: 0 0 16px 16px $bulma-background;
 }
 
 #introduction {
@@ -97,7 +100,6 @@ main {
 
   width: 7%;
   height: 50px;
-  // padding-top: 10px;
 
   background-color: rgba($bulma-purple, 0.5);
 
@@ -146,6 +148,14 @@ main {
   &-menu {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+
+    // When the dropdown menu is visible
+    &.is-active {
+      padding-bottom: 25px;
+      position: absolute;
+      right: 0;
+      width: 300px;
+    }
 
     .navbar-end {
       .navbar-item.button {
