@@ -115,5 +115,5 @@ var backgroundSketch = new p5(function (p) {
           t
       );
     }
-  };
+  }
 });
