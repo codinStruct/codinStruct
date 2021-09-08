@@ -1,4 +1,9 @@
+@use "sass:math";
+
 @use "styles/sass/global" as *;
+
+$header-height: 64px;
+$logo-height: 48px;
 
 @mixin backdrop-blur($amount: 2px) {
   backdrop-filter: blur($amount);
@@ -6,21 +11,28 @@
 
 html {
   background-color: $bulma-background;
-  overflow: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
 }
 
 header {
-  background-color: $bulma-code-background;
-  height: 100px;
-  width: 100%;
-  position: absolute;
+  height: $header-height;
+  background-color: $bulma-navbar-background-color;
 
-  // Only the bottom border
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  flex-shrink: 0;
 
   box-shadow: 0 0 24px $colors-shadow;
+}
+
+main {
+  scroll-behavior: smooth;
+
+  overflow-y: scroll;
 }
 
 // Makes the background sketch appear at the bottom of everything else
@@ -33,20 +45,25 @@ header {
 }
 
 #logo {
-  height: 80px;
+  height: $logo-height;
   border-radius: $bulma-box-radius;
   padding: 0;
-  margin: 10px;
+  margin-left: 10px;
 }
 
 #first-page {
-  height: 100vh;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - #{$header-height});
 }
 
 #second-page {
   height: 100vh;
-  width: 100%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
   background-color: $bulma-background;
 }
 
@@ -60,10 +77,6 @@ header {
   padding: 30px;
 
   overflow: auto;
-
-  position: relative;
-  top: 25%;
-  margin: auto;
 
   // Its 50% but not less than 600px unless it's smaller than the screen
   width: min(max(50%, 600px), 100%);
@@ -122,20 +135,24 @@ header {
 }
 
 .navbar {
-  .navbar-brand {
-    .navbar-burger {
-      height: 50%;
-      top: 25%;
-      right: 0;
-      position: absolute;
-    }
+  background-color: transparent;
+  height: 100%;
+
+  &-brand {
+    height: 100%;
+    align-items: center;
   }
-  .navbar-menu {
+
+  &-menu {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
     .navbar-end {
       .navbar-item.button {
         height: 50%;
         top: 25%;
-        margin-right: 50px;
+        margin-left: 25px;
+        margin-right: 25px;
       }
     }
   }
