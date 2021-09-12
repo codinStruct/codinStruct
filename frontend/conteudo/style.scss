@@ -71,6 +71,10 @@ table {
     margin-bottom: 1em;
   }
 
+  .menu-list a.is-active {
+    background-color: $bulma-purple;
+  }
+
   .categoria {
     @include box($padding: "small");
     border: 1px solid $bulma-purple;
@@ -85,6 +89,7 @@ table {
         box-shadow: 0 0 10px $bulma-purple;
       }
       box-shadow: 0 0 5px $bulma-purple;
+      background-color: $bulma-purple;
     }
   }
 }
@@ -117,6 +122,10 @@ table {
   }
 
   padding: 2em 3em;
+
+  a {
+    text-decoration: underline;
+  }
 
   li {
     list-style-position: inside;

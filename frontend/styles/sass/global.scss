@@ -13,7 +13,7 @@
   $text-strong: color.scale(colors.$text-light, $lightness: 50%),
   $text-light: color.scale(colors.$text-light, $lightness: -50%),
   $hr-background-color: colors.$purple,
-  $link: colors.$purple,
+  $link: colors.$link,
   $code: colors.$purple-light,
   $background: colors.$rose-pine-bg,
   $scheme-main: colors.$rose-pine-moon-bg,
