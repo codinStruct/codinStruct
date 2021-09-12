@@ -1,6 +1,7 @@
 @use "sass:math";
 
 @use "styles/sass/global" as *;
+@use "styles/sass/utils/media_queries" as *;
 
 $header-height: 64px;
 $logo-height: 48px;
@@ -74,20 +75,35 @@ main {
   border-radius: $bulma-box-radius;
   border: 1px solid $bulma-purple;
 
-  padding: 30px;
-
   overflow: auto;
-
-  // Its 50% but not less than 600px unless it's smaller than the screen
-  width: min(max(50%, 600px), 100%);
-  height: max(50%, 300px);
 
   box-shadow: 0 0 24px $colors-shadow;
 
   h1 {
-    font-size: 3em;
-
     text-align: center;
+  }
+
+  @include desktop {
+    // Its 50% but not less than 600px unless it's smaller than the screen
+    width: min(max(50%, 600px), 100%);
+    height: max(50%, 300px);
+
+    padding: 30px;
+
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  @include mobile {
+    width: 90%;
+    height: 90%;
+
+    padding: 15px;
+
+    h1 {
+      font-size: 2.5em;
+    }
   }
 }
 
@@ -125,12 +141,18 @@ main {
 }
 
 .summary {
+  text-align: justify;
   font-size: 1.5em;
 
-  margin-left: max(15%, 15px);
-  margin-right: max(15%, 15px);
+  @include desktop {
+    margin-left: max(15%, 15px);
+    margin-right: max(15%, 15px);
+  }
 
-  text-align: justify;
+  @include mobile {
+    margin-left: max(5%, 5px);
+    margin-right: max(5%, 5px);
+  }
 }
 
 .navbar {
