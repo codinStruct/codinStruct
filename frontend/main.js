@@ -8,3 +8,8 @@ $(".navbar-burger").on("click", function () {
   $(this).toggleClass("is-active");
   $("#" + $(this)[0].dataset.target).toggleClass("is-active");
 });
+
+// Hides the loading screen
+$(window).on("load", function () {
+  hideLoadingScreen();
+});

@@ -1,3 +1,15 @@
+// Finds all pre>code elements and calls highlight.js for each one
+function highlightSourceCode() {
+  $("#content")
+    .find("pre code")
+    .each((_, el) => {
+      hljs.highlightElement(el);
+      hljs.lineNumbersBlock(el, { singleLine: true });
+    });
+}
+
+
+
 // Show/hide sidebar items
 $(".categoria").on("click", function () {
   $(this)
@@ -11,24 +23,27 @@ $(".categoria").on("click", function () {
   $(this).parent().find("li").toggle("fast");
 });
 
-// Loading content, placing it and highlighting all 'pre code' with source code
+
+
+// Once the window finishes loading it will begin to load the content file
+// When that is done the loading screen is hidden
 // TODO: In the future this loading will be done dynamically depending on the page visited
-$("#content").load(
-  "/Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
-  function () {
-    $(this)
-      .find("pre code")
-      .each((_, el) => {
-        hljs.highlightElement(el);
-        hljs.lineNumbersBlock(el, { singleLine: true });
-      });
-  }
-);
+$(window).on("load", function () {
+  $("#content").load(
+    "/Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
+    function () {
+      highlightSourceCode();
+      hideLoadingScreen();
+    }
+  );
+});
+
+
 
 // Swipes to open/close sidebar
-let barraLateral = $("#barra-lateral");
-
 $(document).on("swiped", function (e) {
+  var barraLateral = $("#barra-lateral");
+
   switch (e.detail.dir) {
     case "left":
       barraLateral.removeClass("slide-in-left-mobile");

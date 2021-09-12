@@ -4,7 +4,8 @@ Projeto-Content-Converted
 # All css files with exceptions
 *.css.map
 *.css
-!frontend/styles/css/animations.css
+!frontend/styles/css/**/*.css
+!frontend/vendor/**/*.css
 
 # Other
 jsconfig.json
