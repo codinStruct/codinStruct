@@ -13,3 +13,9 @@ $(".navbar-burger").on("click", function () {
 $(window).on("load", function () {
   hideLoadingScreen();
 });
+
+// Languages sidebar switch
+$("#languages-list>li>span").on("click", function () {
+  $(this).parent().parent().find("li>span").removeClass("is-active");
+  $(this).addClass("is-active");
+})
