@@ -42,6 +42,10 @@ main {
   width: 100%;
   height: 100%;
 
+  // Fallback in case the sketch fails
+  background-image: url("./images/background_fallback.png");
+  background-size: cover;
+
   z-index: -1;
 }
 
@@ -60,7 +64,7 @@ main {
 }
 
 #second-page {
-  height: 100vh;
+  height: calc(100vh - #{$header-height});
   width: 95%;
   margin-left: auto;
   margin-right: auto;
