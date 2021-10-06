@@ -1,32 +1,33 @@
-@use 'sass:color';
-@use 'sass:map' as *;
-@use 'sass:math';
+@use "sass:color";
+@use "sass:map" as *;
+@use "sass:math";
 
 @use "_fonts";
 @use "_colors";
 
-@use '../../vendor/bulma/bulma' with (
-  $family-sans-serif: "Exo 2",
-  $family-code: 'Share Tech Mono',
-  $purple: colors.$purple,
-  $text: colors.$text-light,
-  $text-strong: color.scale(colors.$text-light, $lightness: 50%),
-  $text-light: color.scale(colors.$text-light, $lightness: -50%),
-  $hr-background-color: colors.$purple,
-  $link: colors.$link,
-  $code: colors.$purple-light,
-  $background: colors.$rose-pine-bg,
-  $scheme-main: colors.$rose-pine-moon-bg,
-  $code-background: colors.$rose-pine-moon-bg,
-  $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
-  $radius-large: 10px,
-  $navbar-burger-color: colors.$text-light,
-  $button-active-color: colors.$purple,
-  $primary: colors.$purple
-);
+@use "../../vendor/bulma/bulma" with
+  (
+    $family-sans-serif: "Exo 2",
+    $family-code: "Share Tech Mono",
+    $purple: colors.$purple,
+    $text: colors.$text-light,
+    $text-strong: color.scale(colors.$text-light, $lightness: 50%),
+    $text-light: color.scale(colors.$text-light, $lightness: -50%),
+    $hr-background-color: colors.$purple,
+    $link: colors.$link,
+    $code: colors.$purple-light,
+    $background: colors.$rose-pine-bg,
+    $scheme-main: colors.$rose-pine-moon-bg,
+    $code-background: colors.$rose-pine-moon-bg,
+    $border: color.scale(colors.$rose-pine-moon-bg, $lightness: 10%),
+    $radius-large: 10px,
+    $navbar-burger-color: colors.$text-light,
+    $button-active-color: colors.$purple,
+    $primary: colors.$purple
+  );
 
 @forward "_colors" as colors-*;
-@forward '../../vendor/bulma/bulma.sass' as bulma-*;
+@forward "../../vendor/bulma/bulma.sass" as bulma-*;
 
 @mixin box($padding: "medium") {
   // Partially inherit Bulma's .box properties
@@ -51,7 +52,7 @@
 }
 
 #loading-screen {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
