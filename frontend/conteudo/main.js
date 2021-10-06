@@ -8,7 +8,13 @@ function highlightSourceCode() {
     });
 }
 
-
+function loadContent(path) {
+  showLoadingScreen();
+  $("#content").load(path, function () {
+    highlightSourceCode();
+    hideLoadingScreen();
+  });
+}
 
 // Show/hide sidebar items
 $(".categoria").on("click", function () {
@@ -20,25 +26,21 @@ $(".categoria").on("click", function () {
     .toggleClass("fa-rotate-180");
 
   // Show/hide children
-  $(this).parent().find("li").toggle("fast");
+  $(this).parent().find("ul").toggle("fast");
 });
 
-
+$(".subcategoria").on("click", function () {
+  loadContent("/Projeto-Content-Converted/" + $(this).data("target"));
+  $(".subcategoria").removeClass("is-active");
+  $(this).addClass("is-active");
+});
 
 // Once the window finishes loading it will begin to load the content file
 // When that is done the loading screen is hidden
 // TODO: In the future this loading will be done dynamically depending on the page visited
 $(window).on("load", function () {
-  $("#content").load(
-    "/Projeto-Content-Converted/C/Basico/primeiro_programa/primeiro_programa.html",
-    function () {
-      highlightSourceCode();
-      hideLoadingScreen();
-    }
-  );
+  loadContent("/Projeto-Content-Converted/C/Basico/introducao/introducao.html");
 });
-
-
 
 // Swipes to open/close sidebar
 $(document).on("swiped", function (e) {

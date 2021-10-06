@@ -44,7 +44,7 @@
     <aside id="barra-lateral" class="sidebar">
       <ul class="menu-list" title="Geral" data-titulo="Geral">
         <li>
-          <a class="icon-text">
+          <a class="icon-text" href="/frontend">
             <span class="icon">
               <i class="fas fa-home"></i>
             </span>
@@ -62,23 +62,58 @@
             <span>Básico</span>
           </a>
           <ul>
-            <li><a class="subcategoria">Introdução</a></li>
-            <li><a class="subcategoria">Primeiro programa</a></li>
-            <li><a class="subcategoria">Tipos fundamentais</a></li>
-            <li><a class="subcategoria">Variáveis</a></li>
-            <li><a class="subcategoria">Funções</a></li>
-          </ul>
-        </li>
-        <li>
-          <a class="categoria aberta is-active">
-            <span class="icon">
-              <i class="fas fa-angle-up"></i>
-            </span>
-            <span>Intermediário</span>
-          </a>
-          <ul>
-            <li><a class="subcategoria">Tipos incompletos</a></li>
-            <li><a class="subcategoria is-active">Conversões implícitas</a></li>
+            <li>
+              <a
+                class="subcategoria is-active"
+                data-target="C/Basico/introducao/introducao.html"
+                >Introdução</a
+              >
+            </li>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Basico/primeiro_programa/primeiro_programa.html"
+                >Primeiro programa</a
+              >
+            </li>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Basico/diretiva_include/diretiva_include.html"
+                >Diretiva #include</a
+              >
+            </li>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Basico/funcoes/funcoes.html"
+                >Funções</a
+              >
+            </li>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Basico/variaveis/variaveis.html"
+                >Variáveis</a
+              >
+            </li>
+            <li>
+              <a class="subcategoria" data-target="C/Basico/tipos/tipos.html"
+                >Tipos Fundamentais</a
+              >
+            </li>
+            <li>
+              <a class="subcategoria" data-target="C/Basico/tipos/tabelas.html"
+                >Tabelas dos Tipos Fundamentais</a
+              >
+            </li>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Basico/entrada_e_saida/strings_de_formato.html"
+                >Strings de Formato</a
+              >
+            </li>
           </ul>
         </li>
         <li>
@@ -86,8 +121,42 @@
             <span class="icon">
               <i class="fas fa-angle-up"></i>
             </span>
-            <span>Avançado</span>
+            <span>Intermediário</span>
           </a>
+          <ul>
+            <li>
+              <a
+                class="subcategoria"
+                data-target="C/Intermediario/conversoes_implicitas/conversoes_implicitas.html"
+                >Conversões Implícitas</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="categoria aberta">
+            <span class="icon">
+              <i class="fas fa-angle-up"></i>
+            </span>
+            <span>Independente</span>
+          </a>
+          <ul>
+            <a class="categoria aberta">
+              <span class="icon">
+                <i class="fas fa-angle-up"></i>
+              </span>
+              <span>Avançado</span>
+            </a>
+            <ul>
+              <li>
+                <a
+                  class="subcategoria"
+                  data-target="C/Independente/Avançado/selecao_generica/selecao_generica.html"
+                  >Seleção Genérica</a
+                >
+              </li>
+            </ul>
+          </ul>
         </li>
       </ul>
     </aside>
