@@ -7,6 +7,9 @@ Projeto-Content-Converted
 !frontend/styles/css/**/*.css
 !frontend/vendor/**/*.css
 
+# Generated slideshow
+slides.html
+
 # Other
 jsconfig.json
 .vscode
