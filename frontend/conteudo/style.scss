@@ -76,7 +76,8 @@ table {
     background-color: $bulma-purple;
   }
 
-  .categoria {
+  // Only the first order category
+  .menu-list > li > a.sidebar-category {
     @include box($padding: "small");
     border: 1px solid $bulma-purple;
 

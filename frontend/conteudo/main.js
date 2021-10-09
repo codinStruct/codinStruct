@@ -7,52 +7,52 @@ function loadSidebarContent() {
       type: "main",
       children: [
         {
-          type: "category",
+          type: "sidebar-category",
           name: "Básico",
           children: [
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/introducao/introducao.html",
               name: "Introdução",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/primeiro_programa/primeiro_programa.html",
               name: "Primeiro programa",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/diretiva_include/diretiva_include.html",
               name: "Diretiva #include",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/funcoes/funcoes.html",
               name: "Funções",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/variaveis/variaveis.html",
               name: "Variáveis",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/tipos/tipos.html",
               name: "Tipos Fundamentais",
             },
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target: "C/Basico/tipos/tabelas.html",
               name: "Tabelas dos Tipos Fundamentais",
             },
           ],
         },
         {
-          type: "category",
+          type: "sidebar-category",
           name: "Intermediário",
           children: [
             {
-              type: "subcategory",
+              type: "sidebar-item",
               target:
                 "C/Intermediario/conversoes_implicitas/conversoes_implicitas.html",
               name: "Conversões Implícitas",
@@ -60,15 +60,15 @@ function loadSidebarContent() {
           ],
         },
         {
-          type: "category",
+          type: "sidebar-category",
           name: "Independente",
           children: [
             {
-              type: "category",
+              type: "sidebar-category",
               name: "Avançado",
               children: [
                 {
-                  type: "subcategory",
+                  type: "sidebar-item",
                   target:
                     "C/Independente/Avancado/selecao_generica/selecao_generica.html",
                   name: "Seleção Genérica",
@@ -92,16 +92,16 @@ function populateSidebar(sidebarTarget, sidebarContent) {
     switch (sidebarChild.type) {
       /** Adds:
        * <li>
-       *   <a>
+       *   <a class="sidebar-category">
        *     <span class=icon>
        *       <i class="fas fa-angle-up"></i>
        *     </span>
-       *     <span></span>
+       *     <span>NAME</span>
        *   </a>
        * </li>
        */
-      case "category":
-        a.addClass("categoria");
+      case "sidebar-category":
+        a.addClass("sidebar-category");
 
         sidebarTarget.append(
           li.append(
@@ -122,8 +122,8 @@ function populateSidebar(sidebarTarget, sidebarContent) {
        *   <a>NAME</a> (data: {target: TARGET})
        * </li>
        */
-      case "subcategory":
-        a.addClass("subcategoria")
+      case "sidebar-item":
+        a.addClass("sidebar-item")
           .data("target", sidebarChild.target)
           .text(sidebarChild.name);
 
@@ -134,12 +134,9 @@ function populateSidebar(sidebarTarget, sidebarContent) {
       // Makes the root ul tag be <ul title="Linguagem C" data-titulo="Linguagem C">
       case "main":
         li = sidebarTarget;
-        ul.addClass("menu-list").attr(
-          "title",
-          "Linguagem C",
-          "data-titulo",
-          "Linguagem C"
-        );
+        ul.addClass("menu-list")
+          .attr("title", "Linguagem C")
+          .attr("data-titulo", "Linguagem C");
         break;
     }
 
@@ -173,13 +170,12 @@ function loadContent(path) {
 
 // Once the window finishes loading it will begin to load the content file
 // When that is done the loading screen is hidden
-// TODO: In the future this loading will be done dynamically depending on the page visited
 $(window).on("load", function () {
   // Populates the sidebar with the values returned by the server
   populateSidebar($("aside"), loadSidebarContent());
 
   // Show/hide sidebar categories
-  $(".categoria").on("click", function () {
+  $(".sidebar-category, .sidebar-category").on("click", function () {
     $(this)
       // Change opened state
       .toggleClass("aberta")
@@ -192,14 +188,14 @@ $(window).on("load", function () {
   });
 
   // Click sidebar items to load their specific content
-  $(".subcategoria").on("click", function () {
+  $(".sidebar-item").on("click", function () {
     loadContent("/Projeto-Content-Converted/" + $(this).data("target"));
-    $(".subcategoria").removeClass("is-active");
+    $(".sidebar-item").removeClass("is-active");
     $(this).addClass("is-active");
   });
 
-  // Gets the first subcategory and uses it for the initial content
-  var first = $(".subcategoria").first();
+  // Gets the first sidebar-category and uses it for the initial content
+  var first = $(".sidebar-item").first();
   first.addClass("is-active");
   loadContent("/Projeto-Content-Converted/" + first.data("target"));
 
