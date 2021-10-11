@@ -1,33 +1,25 @@
 name: Preprocess Sass
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ sass-gh-workflow-test ]
-  pull_request:
-    branches: [ sass-gh-workflow-test ]
+    branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  preprocess-sass:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with:
-          ref: sass-gh-workflow-test
-      - uses: actions/setup-node@v2.4.1
-        with:
-          node-version: '16'
-          cache: 'npm'
 
-      - name: Install dart-sass
-        run: npm install -g dart-sass
+      - name: Make destination directory for compiled CSS
+        run: mkdir -p /tmp/assets/css/frontend/conteudo
 
-      - name: Preprocess Sass
-        run: ./sass_preprocess.sh
+      - name: Preprocess style.scss for each page
+        uses: gha-utilities/sass-build@v0.4.7
+        with:
+          source: |
+            frontend/style.scss
+            frontend/conteudo/style.scss
+          destination: |
+            /tmp/assets/css/frontend/style.css
+            /tmp/assets/css/frontend/conteudo/style.css
