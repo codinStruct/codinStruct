@@ -2,7 +2,11 @@ name: Preprocess Sass
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - '**.scss'
+  pull_request:
+    paths:
+      - '**.scss'
 
 jobs:
   preprocess-sass:
