@@ -4,4 +4,4 @@
 [submodule "codinStruct-content"]
 	path = codinStruct-content
 	url = https://github.com/codinStruct/codinStruct-content/
-	branch = WIP
+	branch = xml
