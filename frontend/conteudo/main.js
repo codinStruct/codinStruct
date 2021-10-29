@@ -189,7 +189,7 @@ $(window).on("load", function () {
 
   // Click sidebar items to load their specific content
   $(".sidebar-item").on("click", function () {
-    loadContent("/codinStruct-content-Converted/" + $(this).data("target"));
+    loadContent("/content/" + $(this).data("target"));
     $(".sidebar-item").removeClass("is-active");
     $(this).addClass("is-active");
   });
@@ -197,7 +197,7 @@ $(window).on("load", function () {
   // Gets the first sidebar-category and uses it for the initial content
   var first = $(".sidebar-item").first();
   first.addClass("is-active");
-  loadContent("/codinStruct-content-Converted/" + first.data("target"));
+  loadContent("/content/" + first.data("target"));
 
   // Swipes to open/close sidebar
   $(document).on("swiped", function (e) {

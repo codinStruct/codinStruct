@@ -1,0 +1,16 @@
+# Test the server workflow
+
+name: Run Server
+
+on: [push, pull_request]
+
+jobs:
+  run-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+
+      # Timeout after 2 minutes
+      - run: timeout 2 npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
