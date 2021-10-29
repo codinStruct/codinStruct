@@ -1,6 +1,9 @@
 name: Preprocess Sass
 
 on:
+  push:
+    paths:
+      - '**.scss'
   pull_request:
     paths:
       - '**.scss'
