@@ -219,16 +219,3 @@ $(window).on("load", function () {
     }
   });
 });
-
-// send a post request to /content and console.log the response
-$.post({
-  url: "/content",
-  data: JSON.stringify({
-    ling: "C"
-  }),
-  success: function (data) {
-    console.log(data);
-  },
-  dataType: "json",
-  contentType: "application/json"
-});

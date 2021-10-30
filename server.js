@@ -74,19 +74,19 @@ app.listen(3000, function () {
 
 
 
-// Sends the appropriate file to the client whatever the ling value is
-app.get("/linguagem/:ling", function (req, res) {
+// Sends the appropriate file to the client whatever the lang value is
+app.get("/linguagem/:lang", function (req, res) {
   res.sendFile(path.join(__dirname, "frontend", "linguagem", "index.html"));
 });
 
 // This request comes with the language title and if the language title matches the title method of any element of file_tree.language, return that element.
 app.post("/content", function (req, res) {
-  var ling = req.body.ling;
+  var lang = req.body.lang;
 
-  console.log("Request for /content/" + ling);
+  console.log("Request for /content/" + lang);
 
   var lang_node = file_tree.language.find(function (element) {
-    return element.title == ling;
+    return element.title == lang;
   });
 
   if (lang_node) {
