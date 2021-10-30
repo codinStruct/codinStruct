@@ -70,7 +70,7 @@ function loadSidebarContent() {
                 {
                   type: "sidebar-item",
                   target:
-                    "C/Independente/Avancado/selecao_generica/selecao_generica.html",
+                    "C/Independente/Avançado/selecao_generica/selecao_generica.html",
                   name: "Seleção Genérica",
                 },
               ],
@@ -218,4 +218,17 @@ $(window).on("load", function () {
         break;
     }
   });
+});
+
+// send a post request to /content and console.log the response
+$.post({
+  url: "/content",
+  data: JSON.stringify({
+    ling: "C"
+  }),
+  success: function (data) {
+    console.log(data);
+  },
+  dataType: "json",
+  contentType: "application/json"
 });
