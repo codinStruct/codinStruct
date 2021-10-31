@@ -12,5 +12,5 @@ jobs:
       - uses: actions/setup-node@v2
       - run: npm install
 
-      # Timeout after 2 minutes
-      - run: timeout 2 npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+      # Timeout after 20 seconds
+      - run: timeout 20s npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi

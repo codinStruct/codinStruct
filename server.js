@@ -34,7 +34,7 @@ app.listen(3000, function () {
       // The converter successfully ran
       if (code == 0) {
         file_tree = xmlParser.toJson(
-          fs.readFileSync("./codinStruct-content/C/estrutura.xml"),
+          fs.readFileSync("codinStruct-content/estrutura.xml"),
           {
             arrayNotation: ["language", "category", "page"],
             object: true,
@@ -75,15 +75,19 @@ app.listen(3000, function () {
 
 
 // Sends the appropriate file to the client whatever the lang value is
-app.get("/linguagem/:lang", function (req, res) {
+app.get("/linguagem/:lang/:category/:page", function (req, res) {
+  // Work around for files like main.js and style.css
+  if (req.params.lang.includes("."))
+    res.sendFile(path.join(__dirname, "frontend", req.params.lang));
+
   res.sendFile(path.join(__dirname, "frontend", "linguagem", "index.html"));
 });
 
 // This request comes with the language title and if the language title matches the title method of any element of file_tree.language, return that element.
-app.post("/content", function (req, res) {
+app.post("/api/sidebar", function (req, res) {
   var lang = req.body.lang;
 
-  console.log("Request for /content/" + lang);
+  console.log("Request for /api/sidebar: /content/" + lang);
 
   var lang_node = file_tree.language.find(function (element) {
     return element.title == lang;
@@ -92,6 +96,7 @@ app.post("/content", function (req, res) {
   if (lang_node) {
     res.send(lang_node);
   } else {
-    res.send({ error: true });
+    res.statusCode = 404;
+    res.send({ error: true, description: "Language not found" });
   }
 });
