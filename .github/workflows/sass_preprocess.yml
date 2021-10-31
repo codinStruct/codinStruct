@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Make destination directory for compiled CSS
-        run: mkdir -p /tmp/assets/css/frontend/conteudo
+        run: |
+          mkdir -p /tmp/assets/css/frontend/conteudo
+          mkdir -p /tmp/assets/css/frontend/404
 
       - name: Preprocess style.scss for each page
         uses: gha-utilities/sass-build@v0.4.7
