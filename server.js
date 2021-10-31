@@ -75,12 +75,12 @@ app.listen(3000, function () {
 
 
 // Sends the appropriate file to the client whatever the lang value is
-app.get("/linguagem/:lang/:category/:page", function (req, res) {
+app.get("/conteudo/:lang/:category/:page", function (req, res) {
   // Work around for files like main.js and style.css
   if (req.params.lang.includes("."))
     res.sendFile(path.join(__dirname, "frontend", req.params.lang));
 
-  res.sendFile(path.join(__dirname, "frontend", "linguagem", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "conteudo", "index.html"));
 });
 
 // This request comes with the language title and if the language title matches the title method of any element of file_tree.language, return that element.
@@ -99,4 +99,9 @@ app.post("/api/sidebar", function (req, res) {
     res.statusCode = 404;
     res.send({ error: true, description: "Language not found" });
   }
+});
+
+// Matches every other request and uses the 404 page
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "frontend", "404", "index.html"));
 });

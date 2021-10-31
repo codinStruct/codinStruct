@@ -130,7 +130,7 @@ function loadContent(path) {
       );
     })
     .always(function () {
-      history.pushState({}, "", "/linguagem/" + path);
+      history.pushState({}, "", "/conteudo/" + path);
       hideLoadingScreen();
     });
 }

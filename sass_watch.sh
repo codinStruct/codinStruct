@@ -1,2 +1,2 @@
 #!/bin/bash
-sass --watch frontend/styles/sass frontend/style.scss:frontend/style.css frontend/linguagem/
+sass --watch frontend/styles/sass frontend/ frontend/conteudo frontend/404
