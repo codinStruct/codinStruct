@@ -20,6 +20,9 @@ jobs:
           mkdir -p /tmp/assets/css/frontend/conteudo
           mkdir -p /tmp/assets/css/frontend/404
 
+      - uses: actions/setup-node@v2
+      - run: npm install
+
       - name: Preprocess style.scss for each page
         uses: gha-utilities/sass-build@v0.4.7
         with:

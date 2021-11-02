@@ -9,8 +9,8 @@
     "url": "https://github.com/codinStruct/codinStruct/issues"
   },
   "scripts": {
-    "sass_watch": "sass --watch frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
-    "sass_preprocess": "sass frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
+    "sass:watch": "sass --watch frontend/",
+    "sass:preprocess": "sass frontend/",
     "md2html": "python3 Projeto-MDtoHTML/app.py codinStruct-content/Content frontend/content",
     "webpack:dev": "npx webpack --config webpack.dev.js",
     "webpack:prod": "npx webpack --config webpack.prod.js"
