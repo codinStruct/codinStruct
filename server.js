@@ -4,6 +4,7 @@ const spawn = require("child_process").spawn;
 const path = require("path");
 const xmlParser = require("xml2json");
 const bodyParser = require("body-parser");
+const compression = require("compression");
 
 
 
@@ -18,6 +19,7 @@ var file_tree = [];
 
 
 app.use(bodyParser.json());
+app.use(compression());
 app.use(express.static(path.join(__dirname, "frontend")));
 
 
