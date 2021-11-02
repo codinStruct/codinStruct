@@ -1,8 +1,14 @@
+// Prints a error message in the content area
+function setErrorMessage() {
+  $("#content").html(
+    "<h1>Erro ao carregar conteúdo</h1><p>Por favor, tente novamente mais tarde.</p>"
+  );
+}
+
 // Makes a post request using json format and the body containing the data lang
 function loadSidebarContent(language, category, page) {
   $.post({
-    url: "/api/sidebar",
-    data: JSON.stringify({ lang: language }),
+    url: "/api/sidebar/" + language,
     success: (data) => {
       populateSidebar($("aside.sidebar"), data);
 
@@ -46,7 +52,7 @@ function loadSidebarContent(language, category, page) {
     },
     contentType: "application/json",
     dataType: "json",
-  });
+  }).fail(setErrorMessage);
 }
 
 // This function builds the sidebar from the data received from the server
@@ -119,16 +125,12 @@ function highlightSourceCode() {
 function loadContent(path) {
   showLoadingScreen();
 
-  $.get("/content/" + path + ".html", function (data) {
+  $.get("/api/content/" + path, function (data) {
     $("#content").html(data);
 
     highlightSourceCode();
   })
-    .fail(function (err) {
-      $("#content").html(
-        "<h1>Erro ao carregar conteúdo</h1><p>Por favor, tente novamente mais tarde.</p>"
-      );
-    })
+    .fail(setErrorMessage)
     .always(function () {
       history.pushState({}, "", "/conteudo/" + path);
       hideLoadingScreen();
