@@ -12,18 +12,26 @@
     "sass_watch": "sass --watch frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
     "sass_preprocess": "sass frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
     "md2html": "python3 Projeto-MDtoHTML/app.py codinStruct-content/Content frontend/content",
-    "webpack": "npx webpack"
+    "webpack:dev": "npx webpack --config webpack.dev.js",
+    "webpack:prod": "npx webpack --config webpack.prod.js"
   },
   "homepage": "https://github.com/codinStruct/codinStruct#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "highlight.js": "^11.3.1",
+    "highlightjs-line-numbers.js": "^2.8.0",
     "jquery": "^3.6.0",
+    "p5js": "^1.2.17",
+    "spinkit": "^2.0.1",
     "xml2json": "^0.12.0"
   },
   "devDependencies": {
+    "css-loader": "^6.5.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.61.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
   }
 }

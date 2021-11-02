@@ -8,7 +8,7 @@ frontend/content
 !frontend/vendor/**/*.css
 
 # Webpack
-frontend/vendor/webpack
+frontend/webpack
 
 # Other
 jsconfig.json
