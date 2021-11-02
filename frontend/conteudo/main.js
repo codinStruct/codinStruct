@@ -66,8 +66,6 @@ function loadSidebarContent(language, category, page) {
  * </ul>
  */
 function populateSidebar(sidebarTarget, sidebarContent) {
-  console.log(sidebarContent);
-
   var main_ul = $("<ul class='menu-list'></ul")
     .attr("titulo", "Linguagem " + sidebarContent.title)
     .attr("data-titulo", "Linguagem " + sidebarContent.title);
