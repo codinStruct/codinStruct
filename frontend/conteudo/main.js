@@ -29,6 +29,7 @@ function loadSidebarContent(language, category, page) {
           loadContent($(this).data("target"));
           $(".sidebar-item").removeClass("is-active");
           $(this).addClass("is-active");
+          $("title").text($(this).text());
         }
       });
 
@@ -39,16 +40,10 @@ function loadSidebarContent(language, category, page) {
             $(this).data("target") == language + "/" + category + "/" + page
           );
         })
-        .addClass("is-active")
+        .trigger("click")
         .parent()
         .parent()
-        .toggle("fast")
-        .parent()
-        .find("i.fas")
-        .toggleClass("fa-rotate-180");
-
-      // Load the content
-      loadContent(language + "/" + category + "/" + page);
+        .show();
     },
     contentType: "application/json",
     dataType: "json",

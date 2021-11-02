@@ -39,7 +39,7 @@ app.listen(3000, function () {
             arrayNotation: ["language", "category", "page"],
             object: true,
           }
-        );
+        ).main;
 
         console.log("File tree: ");
         console.log(file_tree);
