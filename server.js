@@ -67,14 +67,14 @@ app.listen(3000, function () {
 
 
     
-  // Running sass_preprocess
-  console.log("Running 'sass_preprocess'");
-  spawn("npm", ["run", "sass_preprocess"])
+  // Running sass:preprocess
+  console.log("Running 'sass:preprocess'");
+  spawn("npm", ["run", "sass:preprocess"])
     .on("close", function (code) {
-      console.log("Exited 'sass_preprocess' with code " + code);
+      console.log("Exited 'sass:preprocess' with code " + code);
     })
     .on("error", function (err) {
-      console.error("Error 'sass_preprocess': " + err);
+      console.error("Error 'sass:preprocess': " + err);
 
       throw err;
     });
