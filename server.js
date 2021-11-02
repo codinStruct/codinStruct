@@ -29,7 +29,7 @@ app.listen(3000, function () {
 
   // Running content_md2html.sh
   console.log("Running content_md2html.sh");
-  const content_md2html = spawn("sh", ["content_md2html.sh"])
+  spawn("sh", ["content_md2html.sh"])
     .on("close", function (code) {
       // The converter successfully ran
       if (code == 0) {
@@ -59,7 +59,7 @@ app.listen(3000, function () {
     
   // Running sass_preprocess.sh
   console.log("Running sass_preprocess.sh");
-  const sass_preprocess = spawn("sh", ["sass_preprocess.sh"])
+  spawn("sh", ["sass_preprocess.sh"])
     .on("close", function (code) {
       console.log("sass_preprocess.sh exited with code " + code);
     })
@@ -74,23 +74,19 @@ app.listen(3000, function () {
 
 
 
-// Sends the appropriate file to the client whatever the lang value is
-app.get("/conteudo/:lang/:category/:page", function (req, res) {
-  // Work around for files like main.js and style.css
-  if (req.params.lang.includes("."))
-    res.sendFile(path.join(__dirname, "frontend", req.params.lang));
-
+// Sends the appropriate file to the client whatever the language value is
+app.get("/conteudo/:language/:category/:page", function (req, res) {
   res.sendFile(path.join(__dirname, "frontend", "conteudo", "index.html"));
 });
 
 // This api is used to get the file tree for the sidebar based on the language
-app.post("/api/sidebar/:lang", function (req, res) {
-  var lang = req.params.lang;
+app.post("/api/sidebar/:language", function (req, res) {
+  var language = req.params.language;
 
-  console.log("Request for /api/sidebar: /content/" + lang);
+  console.log("Request for /api/sidebar: /content/" + language);
 
   var lang_node = file_tree.language.find(function (element) {
-    return element.title == lang;
+    return element.title == language;
   });
 
   if (lang_node) {
