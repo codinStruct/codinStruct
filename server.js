@@ -29,7 +29,7 @@ app.listen(3000, function () {
 
   // Running webpack
   console.log("Running 'webpack'");
-  spawn("npm", ["run", "webpack"])
+  spawn("npm", ["run", "webpack:prod"])
     .on("close", function (code) {
       console.log("Exited 'webpack' with code " + code);
     })
