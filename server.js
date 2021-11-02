@@ -27,9 +27,19 @@ app.use(express.static(path.join(__dirname, "frontend")));
 app.listen(3000, function () {
   console.info("Server running on port 3000");
 
-  // Running content_md2html.sh
-  console.log("Running content_md2html.sh");
-  spawn("sh", ["content_md2html.sh"])
+  // Running webpack
+  console.log("Running 'webpack'");
+  spawn("npm", ["run", "webpack"])
+    .on("close", function (code) {
+      console.log("Exited 'webpack' with code " + code);
+    })
+    .on("error", function (err) {
+      console.error("Error 'webpack': " + err);
+    });
+
+  // Running md2html
+  console.log("Running 'md2html'");
+  spawn("npm", ["run", "md2html"])
     .on("close", function (code) {
       // The converter successfully ran
       if (code == 0) {
@@ -45,10 +55,10 @@ app.listen(3000, function () {
         console.log(file_tree);
       }
 
-      console.log("content_md2html.sh exited with code " + code);
+      console.log("Exited 'md2html' with code " + code);
     })
     .on("error", function (err) {
-      console.error("content_md2html.sh error: " + err);
+      console.error("Error 'md2html': " + err);
 
       throw err;
     });
@@ -57,14 +67,14 @@ app.listen(3000, function () {
 
 
     
-  // Running sass_preprocess.sh
-  console.log("Running sass_preprocess.sh");
-  spawn("sh", ["sass_preprocess.sh"])
+  // Running sass_preprocess
+  console.log("Running 'sass_preprocess'");
+  spawn("npm", ["run", "sass_preprocess"])
     .on("close", function (code) {
-      console.log("sass_preprocess.sh exited with code " + code);
+      console.log("Exited 'sass_preprocess' with code " + code);
     })
     .on("error", function (err) {
-      console.error("sass_preprocess.sh error: " + err);
+      console.error("Error 'sass_preprocess': " + err);
 
       throw err;
     });

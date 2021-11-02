@@ -7,6 +7,9 @@ frontend/content
 !frontend/styles/css/**/*.css
 !frontend/vendor/**/*.css
 
+# Webpack
+frontend/vendor/webpack
+
 # Other
 jsconfig.json
 .vscode

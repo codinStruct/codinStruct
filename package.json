@@ -1,25 +1,29 @@
 {
   "name": "server",
-  "version": "1.0.0",
-  "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codinStruct/codinStruct.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/codinStruct/codinStruct/issues"
+  },
+  "scripts": {
+    "sass_watch": "sass --watch frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
+    "sass_preprocess": "sass frontend/styles/sass frontend/style.scss:frontend/style.css frontend/conteudo/:frontend/conteudo/ frontend/404/:frontend/404/",
+    "md2html": "python3 Projeto-MDtoHTML/app.py codinStruct-content/Content frontend/content",
+    "webpack": "npx webpack"
   },
   "homepage": "https://github.com/codinStruct/codinStruct#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "highlight.js": "^11.3.1",
+    "jquery": "^3.6.0",
     "xml2json": "^0.12.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
   }
 }
