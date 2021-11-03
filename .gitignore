@@ -1,5 +1,5 @@
 # codinStruct-content files after conversion to HTML
-codinStruct-content-Converted
+frontend/content
 
 # All css files with exceptions
 *.css.map
@@ -7,6 +7,10 @@ codinStruct-content-Converted
 !frontend/styles/css/**/*.css
 !frontend/vendor/**/*.css
 
+# Webpack
+frontend/webpack
+
 # Other
 jsconfig.json
 .vscode
+node_modules

@@ -3,51 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./vendor/tobiasahlin/spinkit.min.css" />
+    <link rel="stylesheet" href="/style.css" />
 
-    <!-- highlight.js and theme -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/ros-pine-moon.min.css"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Line numbers for highlight.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-
-    <!-- Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/790a3002da.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- swiped-events (https://github.com/john-doherty/swiped-events) -->
-    <script src="./vendor/john-doherty/swiped-events/swiped-events-min.js"></script>
-
-    <!-- jQuery -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- p5.js -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"
-      integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <!-- webpack -->
+    <script src="/webpack/index.js"></script>
 
     <!-- Background sketch -->
-    <script src="background.js"></script>
+    <script src="/background.js"></script>
   </head>
   <body>
     <div id="background"></div>
@@ -56,7 +20,7 @@
         <div class="navbar-brand">
           <img
             class="navbar-item"
-            src="./images/logo.jpg"
+            src="/images/logo.webp"
             alt="Logo"
             id="logo"
           />
@@ -70,11 +34,11 @@
 
         <div class="navbar-menu" id="navigation-menu">
           <div class="navbar-end">
-            <a class="navbar-item button is-primary" href="/frontend/">Sobre</a>
-            <a class="navbar-item button" href="/frontend/aleatorio"
+            <a class="navbar-item button is-primary" href="/">Sobre</a>
+            <a class="navbar-item button" href="/aleatorio"
               >Aleatório</a
             >
-            <a class="navbar-item button" href="/frontend/linguagens"
+            <a class="navbar-item button" href="/linguagens"
               >Linguagens</a
             >
           </div>
@@ -113,7 +77,7 @@
           </div>
           <div id="description-wrapper">
             <div id="description-header">
-              <img src="./images/python.png" alt="" />
+              <img src="/images/python.webp" alt="" />
             </div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -124,7 +88,7 @@
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <a href="">Aprender linguagem</a>
+            <a href="">Aprender conteudo</a>
           </div>
         </div>
       </div>
@@ -152,7 +116,7 @@
     </div>
 
     <!-- Javascript -->
-    <script src="./main.js"></script>
-    <script src="./js/global.js"></script>
+    <script src="/main.js"></script>
+    <script src="/js/global.js"></script>
   </body>
 </html>

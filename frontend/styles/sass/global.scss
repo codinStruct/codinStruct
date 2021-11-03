@@ -5,7 +5,7 @@
 @use "_fonts";
 @use "_colors";
 
-@use "../../vendor/bulma/bulma" with
+@use "../../../node_modules/bulma/bulma.sass" with
   (
     $family-sans-serif: "Exo 2",
     $family-code: "Share Tech Mono",
@@ -27,7 +27,7 @@
   );
 
 @forward "_colors" as colors-*;
-@forward "../../vendor/bulma/bulma.sass" as bulma-*;
+@forward "../../../node_modules/bulma/bulma.sass" as bulma-*;
 
 @mixin box($padding: "medium") {
   // Partially inherit Bulma's .box properties
