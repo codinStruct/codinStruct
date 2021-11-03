@@ -7,3 +7,5 @@ setTimeout((_) => text.text(""),    11000);
 setTimeout((_) => text.text("2"),   14000);
 setTimeout((_) => text.text("20"),  14500);
 setTimeout((_) => text.text("200"), 15000);
+
+setTimeout((_) => window.location.href = "/", 17000);
