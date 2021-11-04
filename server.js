@@ -12,6 +12,8 @@ const compression = require("compression");
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 var file_tree = [];
 
 
@@ -26,8 +28,8 @@ app.use(express.static(path.join(__dirname, "frontend")));
 
 
 
-app.listen(3000, function () {
-  console.info("Server running on port 3000");
+app.listen(PORT, function () {
+  console.info("Server running on port " + PORT);
 
   // Running webpack
   console.log("Running 'webpack'");
