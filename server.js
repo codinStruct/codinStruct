@@ -1,6 +1,5 @@
 const express = require("express");
 const fs = require("fs");
-const spawn = require("child_process").spawn;
 const path = require("path");
 const xmlParser = require("xml2json");
 const bodyParser = require("body-parser");
@@ -31,57 +30,16 @@ app.use(express.static(path.join(__dirname, "frontend")));
 app.listen(PORT, function () {
   console.info("Server running on port " + PORT);
 
-  // Running webpack
-  console.log("Running 'webpack'");
-  spawn("npm", ["run", "webpack:prod"])
-    .on("close", function (code) {
-      console.log("Exited 'webpack' with code " + code);
-    })
-    .on("error", function (err) {
-      console.error("Error 'webpack': " + err);
-    });
+  file_tree = xmlParser.toJson(
+    fs.readFileSync("codinStruct-content/estrutura.xml"),
+    {
+      arrayNotation: ["language", "category", "page"],
+      object: true,
+    }
+  ).main;
 
-  // Running md2html
-  console.log("Running 'md2html'");
-  spawn("npm", ["run", "md2html"])
-    .on("close", function (code) {
-      // The converter successfully ran
-      if (code == 0) {
-        file_tree = xmlParser.toJson(
-          fs.readFileSync("codinStruct-content/estrutura.xml"),
-          {
-            arrayNotation: ["language", "category", "page"],
-            object: true,
-          }
-        ).main;
-
-        console.log("File tree: ");
-        console.log(file_tree);
-      }
-
-      console.log("Exited 'md2html' with code " + code);
-    })
-    .on("error", function (err) {
-      console.error("Error 'md2html': " + err);
-
-      throw err;
-    });
-
-
-
-
-    
-  // Running sass:preprocess
-  console.log("Running 'sass:preprocess'");
-  spawn("npm", ["run", "sass:preprocess"])
-    .on("close", function (code) {
-      console.log("Exited 'sass:preprocess' with code " + code);
-    })
-    .on("error", function (err) {
-      console.error("Error 'sass:preprocess': " + err);
-
-      throw err;
-    });
+  console.log("File tree: ");
+  console.log(file_tree);
 });
 
 

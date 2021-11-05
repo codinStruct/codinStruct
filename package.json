@@ -9,6 +9,7 @@
     "url": "https://github.com/codinStruct/codinStruct/issues"
   },
   "scripts": {
+    "build": "npm run sass:preprocess && npm run md2html && npm run webpack:prod",
     "sass:watch": "sass --watch frontend/",
     "sass:preprocess": "sass frontend/",
     "md2html": "python3 Projeto-MDtoHTML/app.py codinStruct-content/Content frontend/content",
