@@ -10,8 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ssh-key: ${{secrets.SUBMODULES_PULL_KEY}}
+          token: ${{secrets.ORG_SUBMODULES_TOKEN}}
           submodules: 'recursive'
+          
       - uses: actions/setup-node@v2
       - run: npm install
 
