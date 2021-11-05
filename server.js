@@ -51,6 +51,8 @@ app.get("/conteudo/:language/:category/:page", function (req, res) {
   res.sendFile(path.join(__dirname, "frontend", "conteudo", "index.html"));
 });
 
+
+
 // This api is used to get the file tree for the sidebar based on the language
 app.post("/api/sidebar/:language", function (req, res) {
   var language = req.params.language;
@@ -69,6 +71,8 @@ app.post("/api/sidebar/:language", function (req, res) {
   }
 });
 
+
+
 // This api gets the html file based on the language, category and page names
 app.get("/api/content/:language/:category/:page", function (req, res) {
   var html_path = "/content/" + req.params.language + "/" + req.params.category + "/" + req.params.page + ".html";
@@ -83,6 +87,8 @@ app.get("/api/content/:language/:category/:page", function (req, res) {
     res.send({ error: true, description: "File not found" });
   } 
 });
+
+
 
 // Matches every other request and uses the 404 page
 app.get("*", function (req, res) {
