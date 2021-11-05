@@ -12,8 +12,8 @@ RUN npm install -g sass
 COPY package*.json ./
 RUN npm install
 
-COPY Projeto-MDtoHTML/requirements.txt Projeto-MDtoHTML/
-RUN pip3 install -r Projeto-MDtoHTML/requirements.txt
+COPY md2html/requirements.txt md2html/
+RUN pip3 install -r md2html/requirements.txt
 
 COPY . .
 
