@@ -13,4 +13,4 @@ jobs:
       - run: npm install
 
       # Timeout after 20 seconds
-      - run: timeout 20s npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+      - run: sudo timeout 20s npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
