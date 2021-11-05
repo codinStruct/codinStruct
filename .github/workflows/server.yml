@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ssh-key: ${{secrets.SUBMODULES_PULL_KEY}}
+          submodules: 'recursive'
       - uses: actions/setup-node@v2
       - run: npm install
 
       # Timeout after 20 seconds
       - run: timeout 20s npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        env:
+          PORT: ${{secrets.PORT}}

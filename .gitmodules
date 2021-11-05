@@ -1,6 +1,6 @@
-[submodule "Projeto-MDtoHTML"]
-	path = Projeto-MDtoHTML
-	url = https://github.com/DaviAMSilva/Projeto-MDtoHTML/
+[submodule "md2html"]
+	path = md2html
+	url = https://github.com/codinStruct/md2html
 [submodule "codinStruct-content"]
 	path = codinStruct-content
 	url = https://github.com/codinStruct/codinStruct-content/
