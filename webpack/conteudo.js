@@ -1,16 +1,11 @@
-const $ = require('jquery');
-const hljs = require('highlight.js/lib/core');
+window.$ = require('jquery');
+window.hljs = require('highlight.js/lib/core');
 
-hljs.registerLanguage('c', require('highlight.js/lib/languages/c'));
-hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+import('highlight.js/lib/common');
+import('swiped-events');
+import('highlightjs-line-numbers.js');
 
-require('swiped-events');
-
-import '@fortawesome/fontawesome-free/css/fontawesome.css';
-import '@fortawesome/fontawesome-free/css/solid.css';
-import 'spinkit/spinkit.min.css'
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
+import 'spinkit/spinkit.min.css';
 import 'highlight.js/styles/base16/ros-pine-moon.css';
-
-window.hljs = hljs;
-window.$ = $;
