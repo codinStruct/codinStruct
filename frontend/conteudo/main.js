@@ -137,9 +137,9 @@ $(window).on("load", function () {
   var ulr_parts = window.location.pathname.split("/");
   ulr_parts.shift();
 
-  var page = ulr_parts.pop();
-  var category = ulr_parts.pop();
-  var language = ulr_parts.pop();
+  var page = ulr_parts.pop().toLowerCase();
+  var category = ulr_parts.pop().toLowerCase();
+  var language = ulr_parts.pop().toLowerCase();
 
   // Decide if the page url is valid
   if (page == undefined || category == undefined || language == undefined) {
