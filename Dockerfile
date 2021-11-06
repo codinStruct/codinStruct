@@ -7,7 +7,6 @@ RUN apt-get install -y npm
 RUN apt-get install -y python3
 RUN apt-get install -y python3-pip
 RUN apt-get install -y git
-RUN npm install -g sass
 
 COPY package*.json ./
 RUN npm install
