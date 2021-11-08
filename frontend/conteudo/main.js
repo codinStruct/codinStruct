@@ -64,6 +64,10 @@ function loadSidebarContent(language, category, page) {
         break;
     }
   });
+
+  $(".sidebar-toggle").on("click", function () {
+    toggleSidebar();
+  });
 }
 
 // This function builds the sidebar from the data received from the server
