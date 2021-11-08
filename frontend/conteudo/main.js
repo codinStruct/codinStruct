@@ -48,6 +48,22 @@ function loadSidebarContent(language, category, page) {
     contentType: "application/json",
     dataType: "json",
   }).fail(setErrorMessage);
+
+  // Swipes to open/close sidebar
+  $(document).on("swiped", function (e) {
+    // Ignore if the swipe was done inside a pre code block that can be scrolled
+    if ($(e.target).parents("code").length > 0) return;
+
+    switch (e.detail.dir) {
+      case "left":
+        toggleSidebar("hide");
+        break;
+
+      case "right":
+        toggleSidebar("show");
+        break;
+    }
+  });
 }
 
 // This function builds the sidebar from the data received from the server
@@ -126,8 +142,23 @@ function loadContent(path) {
     .fail(setErrorMessage)
     .always(function () {
       history.pushState({}, "", "/conteudo/" + path);
+      $(window).scrollTop(0);
       hideLoadingScreen();
     });
+}
+
+// Hides or shows the sidebar depending on the specified operation
+function toggleSidebar(op) {
+  if (op == "show") {
+    $("#sidebar").show("fast");
+    $(".sidebar-toggle-right").show("fast");
+  } else if (op == "hide") {
+    $("#sidebar").hide("fast");
+    $(".sidebar-toggle-right").hide("fast");
+  } else {
+    $("#sidebar").toggle("fast");
+    $(".sidebar-toggle-right").toggle("fast");
+  }
 }
 
 // Once the window finishes loading it will begin to load the content file
@@ -147,24 +178,4 @@ $(window).on("load", function () {
   } else {
     loadSidebarContent(language, category, page);
   }
-
-  // Swipes to open/close sidebar
-  $(document).on("swiped", function (e) {
-    var barraLateral = $("#barra-lateral");
-
-    switch (e.detail.dir) {
-      case "left":
-        barraLateral.removeClass("slide-in-left-mobile");
-        barraLateral.addClass("slide-out-left-mobile");
-        break;
-
-      case "right":
-        // Ignore swipes over horizontally scrollable elements
-        if (e.target.scrollWidth > e.target.clientWidth) return;
-
-        barraLateral.removeClass("slide-out-left-mobile");
-        barraLateral.addClass("slide-in-left-mobile");
-        break;
-    }
-  });
 });

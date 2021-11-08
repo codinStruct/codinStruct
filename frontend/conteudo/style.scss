@@ -96,6 +96,28 @@ table {
   }
 }
 
+.sidebar-toggle {
+  position: fixed;
+
+  @include desktop {
+    display: none;
+  }
+
+  &-right {
+    margin-left: $sidebar-width-mobile;
+  }
+
+  button {
+    background-color: $bulma-purple;
+    color: $bulma-text;
+    border: none;
+    cursor: pointer;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+}
+
 #main {
   @include desktop {
     margin-left: $sidebar-width-desktop;

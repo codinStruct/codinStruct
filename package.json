@@ -28,7 +28,7 @@
     "jquery": "^3.6.0",
     "p5js": "^1.2.17",
     "spinkit": "^2.0.1",
-    "swiped-events": "github:john-doherty/swiped-events",
+    "swiped-events": "^1.1.6",
     "xml2json": "^0.12.0"
   },
   "devDependencies": {
