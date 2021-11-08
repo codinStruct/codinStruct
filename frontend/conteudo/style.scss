@@ -134,6 +134,12 @@ table {
     &::marker {
       color: $bulma-purple;
     }
+
+    // first-child is a hack to get higher specificity than Bulma's
+    p:first-child {
+      display: inline-block;
+      margin-bottom: 0;
+    }
   }
 
   // Lists that aren't nested
