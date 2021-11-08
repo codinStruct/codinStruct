@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: recursive
+          token: ${{secrets.ORG_SUBMODULES_TOKEN}}
+          submodules: 'recursive'
 
       - name: Make destination directory for compiled CSS
         run: |
