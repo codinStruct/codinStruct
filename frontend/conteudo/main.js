@@ -5,9 +5,9 @@ function setErrorMessage() {
   );
 }
 
-// Makes a post request using json format and the body containing the data lang
+// Makes a get request using json format and the body containing the data lang
 function loadSidebarContent(language, category, page) {
-  $.post({
+  $.get({
     url: "/api/sidebar/" + language,
     success: (data) => {
       populateSidebar($("aside.sidebar"), data);

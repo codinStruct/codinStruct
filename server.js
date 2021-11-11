@@ -36,7 +36,7 @@ app.get("/conteudo/:language/:category/:page", function (req, res) {
 });
 
 // This api is used to get the file tree for the sidebar based on the language
-app.post("/api/sidebar/:language", function (req, res) {
+app.get("/api/sidebar/:language", function (req, res) {
   var language = req.params.language.toLowerCase();
 
   console.log("Request for /api/sidebar: /content/" + language);
