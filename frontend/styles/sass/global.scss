@@ -45,10 +45,25 @@
   );
 }
 
-@mixin box-inline {
-  @include box($padding: "micro");
+@mixin box-inline($padding: "micro") {
+  @include box($padding);
   display: inline;
   box-shadow: none;
+}
+
+// Universal style for clickable boxes
+@mixin box-interactive($padding: "medium") {
+  @include box($padding);
+
+  cursor: pointer;
+
+  border: 1px solid rgba(bulma.$purple, 0.1);
+
+  transition: border 0.666666s;
+
+  &:hover {
+    border: 1px solid rgba(bulma.$purple, 1);
+  }
 }
 
 #loading-screen {

@@ -1,0 +1,191 @@
+#wordmark {
+  fill: #6b4f8f;
+
+  #wordmark-opening_to {
+    animation: wordmark-opening_to__to 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-opening_to__to {
+    0% {
+      transform: translate(247.583249px, 43.0175px);
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    16.666666% {
+      filter: blur(2px); // Simulate motion blur
+    }
+    33.333333% {
+      transform: translate(25.243999px, 43.0175px);
+      filter: none;
+    }
+    100% {
+      transform: translate(25.243999px, 43.0175px);
+    }
+  }
+  #wordmark-o {
+    animation: wordmark-o_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-o_c_o {
+    0%,
+    23.333333% {
+      opacity: 0;
+    }
+    30%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-d {
+    animation: wordmark-d_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-d_c_o {
+    0%,
+    20% {
+      opacity: 0;
+    }
+    26.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-i {
+    animation: wordmark-i_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-i_c_o {
+    0%,
+    16.666667% {
+      opacity: 0;
+    }
+    20%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-n {
+    animation: wordmark-n_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-n_c_o {
+    0%,
+    13.333333% {
+      opacity: 0;
+    }
+    16.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-s {
+    animation: wordmark-s_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-s_c_o {
+    0%,
+    13.333333% {
+      opacity: 0;
+    }
+    16.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-t {
+    animation: wordmark-t_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-t_c_o {
+    0%,
+    6.666667% {
+      opacity: 0;
+    }
+    13.333333%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-r {
+    animation: wordmark-r_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-r_c_o {
+    0%,
+    13.333333% {
+      opacity: 0;
+    }
+    16.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-u {
+    animation: wordmark-u_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-u_c_o {
+    0%,
+    13.333333% {
+      opacity: 0;
+    }
+    16.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-c {
+    animation: wordmark-c_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-c_c_o {
+    0%,
+    16.666667% {
+      opacity: 0;
+    }
+    20%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-t2 {
+    animation: wordmark-t2_c_o 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-t2_c_o {
+    0%,
+    23.333333% {
+      opacity: 0;
+    }
+    26.666667%,
+    100% {
+      opacity: 1;
+    }
+  }
+  #wordmark-slash_to {
+    animation: wordmark-slash_to__to 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-slash_to__to {
+    0% {
+      transform: translate(284.252751px, 40.527501px);
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    16.666666% {
+      filter: blur(2px); // Simulate motion blur
+    }
+    33.333333% {
+      transform: translate(492.724001px, 40.527501px);
+      filter: none;
+    }
+    100% {
+      transform: translate(492.724001px, 40.527501px);
+    }
+  }
+  #wordmark-closing_to {
+    animation: wordmark-closing_to__to 3000ms linear 1 normal forwards;
+  }
+  @keyframes wordmark-closing_to__to {
+    0% {
+      transform: translate(319.701741px, 43.0175px);
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    16.666666% {
+      filter: blur(2px); // Simulate motion blur
+    }
+    33.333333% {
+      transform: translate(528.172991px, 43.0175px);
+      filter: none;
+    }
+    100% {
+      transform: translate(528.172991px, 43.0175px);
+    }
+  }
+}

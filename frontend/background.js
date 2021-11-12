@@ -27,7 +27,7 @@ var backgroundSketch = new p5(function (p) {
     canvas.parent("#background");
 
     // The number of points is proportional to the area
-    nums = p.round((p.width * p.height) / 2000);
+    nums = p.round((p.width * p.height) / 20000);
 
     p.background(backgroundColor);
 

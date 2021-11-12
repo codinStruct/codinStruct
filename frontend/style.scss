@@ -3,8 +3,9 @@
 @use "styles/sass/global" as *;
 @use "styles/sass/utils/media_queries" as *;
 
-$header-height: 64px;
-$logo-height: 48px;
+@use "styles/css/animations.css";
+
+@use "wordmark";
 
 @mixin backdrop-blur($amount: 2px) {
   backdrop-filter: blur($amount);
@@ -19,15 +20,6 @@ body {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-}
-
-header {
-  height: $header-height;
-  background-color: $bulma-navbar-background-color;
-
-  flex-shrink: 0;
-
-  box-shadow: 0 0 24px $colors-shadow;
 }
 
 main {
@@ -47,34 +39,40 @@ main {
   background-size: cover;
 
   z-index: -1;
-}
 
-#logo {
-  height: $logo-height;
-  border-radius: $bulma-box-radius;
-  padding: 0;
-  margin-left: 10px;
+  // Smoothly reducing blur
+  animation: background-in 3s;
+  animation-fill-mode: both;
+  @keyframes background-in {
+    from {
+      filter: blur(16px);
+    }
+    to {
+      filter: none;
+    }
+  }
 }
 
 #first-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - #{$header-height});
+  height: 100vh;
 
   #introduction {
-    @include backdrop-blur(3px);
-
-    background-color: rgba($bulma-background, 0.75);
-    border-radius: $bulma-box-radius;
-    border: 1px solid $bulma-purple;
+    @include box;
 
     overflow: auto;
 
-    box-shadow: 0 0 24px $colors-shadow;
-
     h1 {
       text-align: center;
+    }
+
+    hr {
+      animation: fade-in 1000ms;
+      animation-fill-mode: both;
+      animation-delay: 500ms;
+      margin-bottom: 3rem;
     }
 
     @include desktop {
@@ -103,7 +101,7 @@ main {
 }
 
 #second-page {
-  height: calc(100vh - #{$header-height});
+  height: 100vh;
   width: 95%;
   margin-left: auto;
   margin-right: auto;
@@ -150,22 +148,21 @@ main {
         margin: 0.75em;
 
         li span {
-            font-size: 25px;
-            width: 100%;
-            height: 50px;
-            line-height: 34px;
+          font-size: 25px;
+          width: 100%;
+          height: 50px;
+          line-height: 34px;
 
-            display: block;
-            padding: 8px;
+          display: block;
+          padding: 8px;
 
-            cursor: pointer;
-            border-radius: 2px;
+          cursor: pointer;
+          border-radius: 2px;
 
-            &.is-active {
-              background-color: $bulma-purple;
-            }
+          &.is-active {
+            background-color: $bulma-purple;
           }
-        
+        }
       }
     }
 
@@ -202,13 +199,10 @@ main {
 }
 
 #next-page-button {
-  @include box;
-  @include backdrop-blur;
+  @include box-interactive;
 
   width: 7%;
   height: 50px;
-
-  background-color: rgba($bulma-purple, 0.5);
 
   position: absolute;
   bottom: 1vh;
@@ -217,13 +211,6 @@ main {
   text-align: center;
 
   cursor: pointer;
-
-  transition: 200ms;
-  &:hover {
-    background-color: rgba($bulma-purple, 1);
-    box-shadow: 0 0 5px $bulma-purple;
-    color: black;
-  }
 
   span {
     position: absolute;
@@ -246,37 +233,5 @@ main {
   @include mobile {
     margin-left: max(5%, 5px);
     margin-right: max(5%, 5px);
-  }
-}
-
-.navbar {
-  background-color: transparent;
-  height: 100%;
-
-  &-brand {
-    height: 100%;
-    align-items: center;
-  }
-
-  &-menu {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    // When the dropdown menu is visible
-    &.is-active {
-      padding-bottom: 25px;
-      position: absolute;
-      right: 0;
-      width: 300px;
-    }
-
-    .navbar-end {
-      .navbar-item.button {
-        height: 50%;
-        top: 25%;
-        margin-left: 25px;
-        margin-right: 25px;
-      }
-    }
   }
 }
