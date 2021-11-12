@@ -44,4 +44,28 @@ router.get("/content/:language/:category/:page", function (req, res) {
   }
 });
 
+router.get("/descriptions", function (req, res) {
+  let file_tree = res.locals.file_tree;
+  let description_list = [];
+
+  console.log("Request for /api/descriptions");
+
+  // Getting the descriptions for each language
+  file_tree.language.forEach(function (element) {
+    description_list.push({
+      title: element.title,
+      description: element.description || "",
+      path:
+        "/conteudo/" +
+        element.path +
+        "/" +
+        element.category[0].path +
+        "/" +
+        element.category[0].page[0].path,
+    });
+  });
+
+  res.send(description_list);
+});
+
 module.exports = router;

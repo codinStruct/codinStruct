@@ -3,6 +3,8 @@ function setErrorMessage() {
   $("#content").html(
     "<h1>Erro ao carregar conteúdo</h1><p>Por favor, tente novamente mais tarde.</p>"
   );
+
+  hideLoadingScreen();
 }
 
 // Makes a get request using json format and the body containing the data lang
@@ -26,11 +28,17 @@ function loadSidebarContent(language, category, page) {
       // Click sidebar items to load their specific content
       $(".sidebar-item").on("click", function () {
         if (!$(this).hasClass("is-active")) {
-          loadContent($(this).data("target"));
-          $(".sidebar-item").removeClass("is-active");
-          $(this).addClass("is-active");
-          $("title").text($(this).text());
+          history.pushState({}, "", "/conteudo/" + $(this).data("target"));
+          $(this).trigger("click_internal");
         }
+      });
+
+      // Internal trigger to differentiate between actual clicks from the user and clicks triggered by the loading system
+      $(".sidebar-item").on("click_internal", function () {
+        loadContent($(this).data("target"));
+        $(".sidebar-item").removeClass("is-active");
+        $(this).addClass("is-active");
+        $("title").text($(this).text());
       });
 
       // Find the element whose target is equal to language/category/page then activate it
@@ -40,7 +48,7 @@ function loadSidebarContent(language, category, page) {
             $(this).data("target") == language + "/" + category + "/" + page
           );
         })
-        .trigger("click")
+        .trigger("click_internal")
         .parent()
         .parent()
         .show();
@@ -138,14 +146,16 @@ function highlightSourceCode() {
 function loadContent(path) {
   showLoadingScreen();
 
-  $.get("/api/content/" + path, function (data) {
-    $("#content").html(data);
+  $.get({
+    url: "/api/content/" + path,
+    success: (data) => {
+      $("#content").html(data);
 
-    highlightSourceCode();
+      highlightSourceCode();
+    },
   })
     .fail(setErrorMessage)
     .always(function () {
-      history.pushState({}, "", "/conteudo/" + path);
       $(window).scrollTop(0);
       hideLoadingScreen();
     });
@@ -182,4 +192,24 @@ $(window).on("load", function () {
   } else {
     loadSidebarContent(language, category, page);
   }
+});
+
+// Allows the user to use the back and forwards button to go back to the previous page and next page
+$(window).on("popstate", function (e) {
+  var url_parts = window.location.pathname.split("/");
+  url_parts.shift();
+
+  var page = url_parts.pop().toLowerCase();
+  var category = url_parts.pop().toLowerCase();
+  var language = url_parts.pop().toLowerCase();
+
+  // Find the element whose target is equal to language/category/page then activate it
+  $(".sidebar-item")
+    .filter(function () {
+      return $(this).data("target") == language + "/" + category + "/" + page;
+    })
+    .trigger("click_internal")
+    .parent()
+    .parent()
+    .show();
 });

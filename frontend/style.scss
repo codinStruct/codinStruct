@@ -179,20 +179,10 @@ main {
 
       overflow: auto;
 
-      #description-header {
-        img {
-          height: 125px;
-        }
-      }
-
       p,
       a {
         font-size: 1.5em;
         padding: 20px;
-      }
-
-      a {
-        text-decoration: underline;
       }
     }
   }
