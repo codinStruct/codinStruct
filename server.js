@@ -15,6 +15,13 @@ app.use(bodyParser.json());
 app.use(compression());
 app.use(express.static(path.join(__dirname, "frontend")));
 
+// Setting up file_tree to be available to the routes
+app.use(function (req, res, next) {
+  res.locals.file_tree = file_tree;
+  next();
+});
+
+// Using the routes
 app.use("/api", require("./routes/api"));
 app.use("/", require("./routes/routes"));
 

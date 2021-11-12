@@ -1,9 +1,11 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const router = express.Router();
 
 // This is used to get the file tree for the sidebar based on the language
 router.get("/sidebar/:language", function (req, res) {
+  let file_tree = res.locals.file_tree;
   let language = req.params.language.toLowerCase();
 
   console.log("Request for /api/sidebar: /content/" + language);
