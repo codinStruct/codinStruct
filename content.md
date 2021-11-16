@@ -8,9 +8,28 @@ paginate: false
 
 ---
 
+## Tecnologias Utilizadas:
+<style scoped>
+* {
+    display: flex;
+    flex-flow: row wrap;
+    align-self: center;
+}
+
+img {
+    width: 160px;
+    height: auto;
+    margin: 15px;
+}
+</style>
+
+![](assets/tech/html.png)![](assets/tech/javascript.png)![](assets/tech/scss.png)![invert](assets/tech/markdown.png)![](assets/tech/webpack.png)![](assets/tech/python.png)![](assets/tech/npm.png)![](assets/tech/nodejs.png)![](assets/tech/git.png)![invert](assets/tech/github.png)![](assets/tech/docker.png)![](assets/tech/heroku.png)
+
+---
+
 ## Markdown
 
-A totalidade de conteúdo sobre as linguagens de programação é escrita em Markdown, e a quantidade __total__ aproximada de linhas está na tabela abaixo.
+A totalidade de conteúdo sobre as linguagens de programação é escrita em Markdown, e a quantidade **total** aproximada de linhas está na tabela abaixo.
 
 | Linguagem  | Linhas |
 | ---------- | ------ |
@@ -55,12 +74,12 @@ O Webpack compila os códigos-fonte JavaScript e CSS para um formato que pode se
 Exemplo Webpack antes de ser compilado:
 
 ```js
-window.$ = require('jquery');
-window.p5 = require('p5js/p5.js/p5.min.js');
+window.$ = require("jquery");
+window.p5 = require("p5js/p5.js/p5.min.js");
 
-import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
-import '@fortawesome/fontawesome-free/css/solid.min.css';
-import 'spinkit/spinkit.min.css';
+import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
+import "@fortawesome/fontawesome-free/css/solid.min.css";
+import "spinkit/spinkit.min.css";
 ```
 
 ---
