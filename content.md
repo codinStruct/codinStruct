@@ -4,10 +4,7 @@ theme: codinstruct
 paginate: false
 ---
 
-![wordmark codinStruct](assets/img/geo_anim.svg)
-
-# Conteúdo
-
+# ![wordmark codinStruct](assets/img/geo_anim.svg) Conteúdo
 
 ---
 
@@ -22,13 +19,10 @@ A totalidade de conteúdo sobre as linguagens de programação é escrita em Mar
 
 ---
 
-### Aqui está um trecho de Markdown.
+### Aqui está um trecho de Markdown
 
 ```markdown
-Alguns caracteres não podem ser simplesmente digitados, portanto são
-representados utilizando **sequências de escape**, nesse caso uma barra
-invertida `\` seguida de um caractere. Na tabela abaixo estão algumas
-sequências de escape.
+Alguns caracteres não podem ser simplesmente digitados, portanto são representados utilizando **sequências de escape**, nesse caso uma barra invertida `\` seguida de um caractere. Na tabela abaixo estão algumas sequências de escape.
 
 | Sequência | Descrição                          |
 | :-------: | :--------------------------------- |
@@ -39,7 +33,7 @@ sequências de escape.
 
 ---
 
-### E aqui está o mesmo trecho exibido em nosso site.
+### E aqui está o mesmo trecho exibido em nosso site
 
 ![Markdown estilizado](assets/img/markdown_estilizado.png)
 
@@ -48,6 +42,7 @@ sequências de escape.
 ## Como isso funciona?
 
 ---
+
 ## Webpack
 
 O Webpack compila os códigos-fonte JavaScript e CSS para um formato que pode ser utilizado pelo navegador.
