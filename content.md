@@ -47,3 +47,29 @@ sequências de escape.
 
 ## Como isso funciona?
 
+---
+## Webpack
+
+O Webpack compila os códigos-fonte JavaScript e CSS para um formato que pode ser utilizado pelo navegador.
+
+---
+
+Exemplo Webpack antes de ser compilado:
+
+```js
+window.$ = require('jquery');
+window.p5 = require('p5js/p5.js/p5.min.js');
+
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
+import 'spinkit/spinkit.min.css';
+```
+
+---
+
+Exemplo Webpack depois de ser compilado:
+
+```js
+/*! For license information please see index.js.LICENSE.txt */
+(()=>{var e={7481:(e,t,r)=>{"use strict";r.d(t,{Z:()=>s});var n=r(8081),o=r.n(n),a=r(3645),i=r.n(a)()(o());i.push([e.id,'/*!\n * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.'
+```
