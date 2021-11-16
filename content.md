@@ -4,7 +4,7 @@ theme: codinstruct
 paginate: false
 ---
 
-# ![wordmark codinStruct](assets/img/geo_anim.svg) Conteúdo
+# ![wordmark codinStruct](assets/img/geo_anim.svg)
 
 ---
 
@@ -43,6 +43,18 @@ sequências de escape.
 ---
 
 ## Como isso funciona?
+
+---
+
+### 1. Convertemos o Markdown para HTML
+
+Para isso utilizamos nosso conversor escrito em Python, que é um wrapper do módulo Mistune. ![Repositório md2html](assets/img/md2html.png)
+
+---
+
+### 2. Aplicamos os estilos CSS durante a exibição
+
+Como o Markdown é convertido para HTML com as tags apropriadas, basta utilizar seletores CSS para aplicar os estilos.
 
 ---
 
