@@ -51,3 +51,16 @@ $(window).on("load", function () {
 
   hideLoadingScreen();
 });
+
+// Makes the #next-page-button go away when the user gets to the bottom of the 'main' element
+// The opacity goes from 1 on the top to 0 on the bottom
+$("main").on("scroll", function (e) {
+  let opacity = 1 - $(this).scrollTop() / $(this).height();
+  $("#next-page-button").css("opacity", opacity);
+
+  if (opacity <= 0) {
+    $("#next-page-button").hide();
+  } else {
+    $("#next-page-button").show();
+  }
+});

@@ -64,10 +64,6 @@ main {
 
     overflow: auto;
 
-    h1 {
-      text-align: center;
-    }
-
     hr {
       animation: fade-in 1000ms;
       animation-fill-mode: both;
@@ -76,26 +72,18 @@ main {
     }
 
     @include desktop {
-      // Its 50% but not less than 600px unless it's smaller than the screen
-      width: min(max(50%, 600px), 100%);
-      height: max(50%, 300px);
+      // Its 60% but not less than 600px unless it's smaller than the screen
+      width: min(max(60%, 600px), 100%);
+      height: max(60%, 300px);
 
-      padding: 30px;
-
-      h1 {
-        font-size: 3em;
-      }
+      padding: 20px;
     }
 
     @include mobile {
-      width: 90%;
-      height: 90%;
+      width: 80%;
+      height: 60%;
 
       padding: 15px;
-
-      h1 {
-        font-size: 2.5em;
-      }
     }
   }
 }
@@ -125,12 +113,14 @@ main {
       border-radius: 20px;
       border: 1px solid $bulma-purple;
 
-      float: left;
-      width: 30%;
-      height: 100%;
+      @include desktop {
+        float: left;
+        width: 30%;
+        height: 100%;
+      }
 
       #languages-title {
-        font-size: 40px;
+        font-size: 2.4em;
         width: 100%;
         height: 80px;
         line-height: 70px;
@@ -148,7 +138,7 @@ main {
         margin: 0.75em;
 
         li span {
-          font-size: 25px;
+          font-size: 1.5em;
           width: 100%;
           height: 50px;
           line-height: 34px;
@@ -167,22 +157,33 @@ main {
     }
 
     #description-wrapper {
-      float: right;
       position: relative;
-      top: 5%;
-      right: 10%;
-      width: 50%;
-      height: 90%;
 
       padding: 20px;
-      text-align: right;
 
       overflow: auto;
 
+      @include desktop {
+        float: right;
+        width: 60%;
+        height: 90%;
+        text-align: right;
+      }
+
+      @include mobile {
+        text-align: center;
+      }
+
       p,
       a {
-        font-size: 1.5em;
-        padding: 20px;
+        @include desktop {
+          font-size: 1.25em;
+          padding: 20px;
+        }
+
+        @include mobile {
+          font-size: 1em;
+        }
       }
     }
   }
@@ -213,14 +214,15 @@ main {
 
 .summary {
   text-align: justify;
-  font-size: 1.5em;
 
   @include desktop {
+    font-size: 1.75em;
     margin-left: max(15%, 15px);
     margin-right: max(15%, 15px);
   }
 
   @include mobile {
+    font-size: 1.25em;
     margin-left: max(5%, 5px);
     margin-right: max(5%, 5px);
   }
