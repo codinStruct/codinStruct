@@ -22,7 +22,10 @@ A totalidade de conteúdo sobre as linguagens de programação é escrita em Mar
 ### Aqui está um trecho de Markdown
 
 ```markdown
-Alguns caracteres não podem ser simplesmente digitados, portanto são representados utilizando **sequências de escape**, nesse caso uma barra invertida `\` seguida de um caractere. Na tabela abaixo estão algumas sequências de escape.
+Alguns caracteres não podem ser simplesmente digitados, portanto são
+representados utilizando **sequências de escape**, nesse caso uma barra
+invertida `\` seguida de um caractere. Na tabela abaixo estão algumas
+sequências de escape.
 
 | Sequência | Descrição                          |
 | :-------: | :--------------------------------- |
