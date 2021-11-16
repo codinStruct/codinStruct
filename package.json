@@ -1,0 +1,19 @@
+{
+  "name": "codinstruct-presentation",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run convert",
+    "convert": "npx marp *.md --theme-set=theme.css "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codinStruct/codinStruct.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codinStruct/codinStruct/issues"
+  },
+  "homepage": "https://github.com/codinStruct/codinStruct#readme",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^1.4.2"
+  }
+}

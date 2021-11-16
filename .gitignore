@@ -1,0 +1,4 @@
+# Apresentações de slides
+*.html
+
+node_modules
