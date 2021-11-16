@@ -1,0 +1,39 @@
+/* @theme codinstruct */
+
+@import "uncover";
+
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+:root {
+  font-family: "Exo 2";
+  color: #c9d1d9;
+  background: #191724;
+}
+
+h1,
+h2 {
+  color: #6b4f8f;
+}
+
+pre {
+  color: unset;
+  background-color: #232136;
+  border-radius: 20px;
+}
+
+pre code {
+  font-family: "Share Tech Mono";
+  color: unset;
+  background-color: #232136;
+}
+
+table {
+  background-color: #232136;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #6b4f8f;
+}
