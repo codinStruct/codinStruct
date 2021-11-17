@@ -86,8 +86,8 @@ function loadSidebarContent(language, category, page) {
  * <ul> (main_ul)
  *   <li> (category_li)
  *     <a> (category_a)
- *      <span><i/> (icon)</span>
  *      <span>(Categoria Título)</span>
+ *      <span><i/> (icon)</span>
  *     <ul> (category_li_ul)
  *       <li> (page_li)
  *         <a>(Página Título)</a>
