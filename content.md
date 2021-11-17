@@ -253,3 +253,29 @@ Para fazer o upload da nossa aplicação é utilizado o Container Registry & Run
 <br>
 
 codinstruct-pi4.herokuapp.com
+
+---
+
+## Agradecemos a atenção
+
+<style scoped>
+img {
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  margin-top: 1em;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate(0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60%, 100% { transform: rotate(0.0deg) }
+}
+</style>
+
+![Mão acenando](assets/img/hand_wave.svg)
