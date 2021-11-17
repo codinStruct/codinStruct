@@ -36,6 +36,8 @@ A totalidade de conteúdo sobre as linguagens de programação é escrita em Mar
 | ---------- | ------ |
 | C          | 2500   |
 | JavaScript | 1400   |
+| Python     | 600    |
+| Assembly   | 0      |
 
 ---
 
