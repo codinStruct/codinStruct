@@ -19,5 +19,4 @@ COPY . .
 # every time Heroku stops the app because it was idle and has to start it again 
 RUN npm run build
 
-EXPOSE 80
 CMD ["npm","start"]
