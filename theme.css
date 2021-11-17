@@ -32,6 +32,14 @@ table {
   background-color: #232136;
   border-radius: 20px;
   overflow: hidden;
+  font-size: 0.75rem;
+}
+
+th,
+td {
+  /* important pois especificidade maior que "initial div#p>svg>foreignObject>section table>tbody>tr:not(:last-child)>td, div#p>svg>foreignObject>section table>tbody>tr:not(:last-child)>th"
+      é meio difícil */
+  border-color: rgb(52, 49, 80) !important;
 }
 
 th {
