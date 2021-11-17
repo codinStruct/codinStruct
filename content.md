@@ -146,3 +146,58 @@ ul {
 | /api/content      | Retorna o conteúdo html de uma página                             |
 | /api/sidebar      | Retorna um JSON com os dados necessários para construir a sidebar |
 | /api/descriptions | Retorna um JSON com as descrições de todas as linguagens          |
+
+---
+
+## Docker
+
+O Docker é um container que permite a execução de códigos-fonte em um ambiente de desenvolvimento.
+Nós o utilizamos para executar o backend em um ambiente de testes.
+
+---
+
+### Dockerfile
+
+<style scoped>
+* {
+  font-size: 0.8em;
+  line-height: 0.8em;
+}
+</style>
+
+```dockerfile
+FROM ubuntu
+
+WORKDIR /usr/src/codinStruct
+RUN apt-get update
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+
+COPY package*.json ./
+RUN npm install
+
+COPY md2html/requirements.txt md2html/
+RUN pip3 install -r md2html/requirements.txt
+
+COPY . .
+
+# Saves the built files to the image so they don't have to be built again
+# every time Heroku stops the app because it was idle and has to start it again 
+RUN npm run build
+
+CMD ["npm","start"]
+```
+
+---
+
+## Heroku
+
+O Heroku é um serviço de hospedagem de aplicações web gratuito e de fácil uso.
+
+Para fazer o upload da nossa aplicação é utilizado o Container Registry & Runtime, fazendo o upload da imagem Docker para o Heroku.
+
+<br>
+
+codinstruct-pi4.herokuapp.com
