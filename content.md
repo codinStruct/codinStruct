@@ -9,6 +9,7 @@ paginate: false
 ---
 
 ## Tecnologias Utilizadas:
+
 <style scoped>
 * {
     display: flex;
@@ -102,3 +103,46 @@ Exemplo Webpack depois de ser compilado:
 /*! For license information please see index.js.LICENSE.txt */
 (()=>{var e={7481:(e,t,r)=>{"use strict";r.d(t,{Z:()=>s});var n=r(8081),o=r.n(n),a=r(3645),i=r.n(a)()(o());i.push([e.id,'/*!\n * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.'
 ```
+
+---
+
+## Backend
+
+Nosso backend utiliza o framework Express.js para gerenciar as requisições e uma API RESTful utilizada para acessar os dados no frontend.
+
+---
+
+## Estrutura
+<style scoped>
+li {
+  margin: -15px;
+}
+
+ul {
+  padding-left: 100px;
+}
+</style>
+
+- codinStruct-content/
+- md2html/
+- frontend/
+  - 404/ 
+  - conteudo/
+  - icons/
+  - js/
+  - styles/
+  - webpack/
+  - content/
+- routes/
+- webpack/
+- node_modules/
+
+---
+
+### Rotas
+
+| Rota              | Utilização                                                        |
+| ----------------- | ----------------------------------------------------------------- |
+| /api/content      | Retorna o conteúdo html de uma página                             |
+| /api/sidebar      | Retorna um JSON com os dados necessários para construir a sidebar |
+| /api/descriptions | Retorna um JSON com as descrições de todas as linguagens          |
