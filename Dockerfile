@@ -17,6 +17,6 @@ COPY . .
 
 # Saves the built files to the image so they don't have to be built again
 # every time Heroku stops the app because it was idle and has to start it again 
-RUN npm run build
+RUN npm run build:prod
 
 CMD ["npm","start"]

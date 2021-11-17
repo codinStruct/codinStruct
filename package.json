@@ -9,10 +9,14 @@
     "url": "https://github.com/codinStruct/codinStruct/issues"
   },
   "scripts": {
-    "build": "npm run sass:preprocess && npm run md2html && npm run webpack:prod",
+    "build": "npm run build:dev",
+    "build:prod": "npm run sass:preprocess && npm run md2html && npm run webpack:prod",
+    "build:dev": "npm run sass:preprocess && npm run md2html && npm run webpack:dev",
+    "sass": "npm run sass:preprocess",
     "sass:watch": "npx sass --watch frontend/",
     "sass:preprocess": "npx sass frontend/",
     "md2html": "python3 md2html/app.py codinStruct-content/Content frontend/content",
+    "webpack": "npm run webpack:dev",
     "webpack:dev": "npx webpack --config webpack.dev.js",
     "webpack:prod": "npx webpack --config webpack.prod.js"
   },
