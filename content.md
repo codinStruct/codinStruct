@@ -41,6 +41,7 @@ A totalidade de conteúdo sobre as linguagens de programação é escrita em Mar
 
 ### Aqui está um trecho de Markdown
 
+<!-- prettier-ignore -->
 ```markdown
 Alguns caracteres não podem ser simplesmente digitados, portanto são
 representados utilizando **sequências de escape**, nesse caso uma barra
@@ -68,13 +69,61 @@ sequências de escape.
 
 ### 1. Convertemos o Markdown para HTML
 
-Para isso utilizamos nosso conversor escrito em Python, que é um wrapper do módulo Mistune. ![Repositório md2html](assets/img/md2html.png)
+Para isso utilizamos nosso conversor escrito em Python, que é um wrapper do módulo Mistune.
 
 ---
 
 ### 2. Aplicamos os estilos CSS durante a exibição
 
 Como o Markdown é convertido para HTML com as tags apropriadas, basta utilizar seletores CSS para aplicar os estilos.
+
+---
+
+![bg left](assets/mascots/octocat.png)
+
+## Organização
+
+Nosso projeto está inteiramente no GitHub, dentro da organização codinStruct.
+
+---
+
+### Repositórios
+
+| Nome                | Função                                      |
+| ------------------- | ------------------------------------------- |
+| codinStruct         | Tudo que é necessário para rodar o servidor |
+| codinStruct-content | Conteúdo sobre linguagens de programação    |
+| md2html             | Conversor de Markdown para HTML             |
+
+---
+
+### Kanban
+
+<style scoped>
+img {
+    width: 100%;
+    margin-top: 1em;
+}
+</style>
+
+Utilizamos GitHub projects para organizar nossos afazeres.
+
+![Cards de kanban](assets/img/cards.png)
+
+---
+
+### Testes
+
+<style scoped>
+img {
+    width: 66.6%;
+    margin-top: 1em;
+}
+</style>
+
+Utilizamos GitHub Actions para realizar diversos testes automaticamente em todas nossas alterações significativas.
+
+![GitHub Actions](assets/img/workflow.png)
 
 ---
 
@@ -113,6 +162,7 @@ Nosso backend utiliza o framework Express.js para gerenciar as requisições e u
 ---
 
 ## Estrutura
+
 <style scoped>
 li {
   margin: -15px;
@@ -126,7 +176,7 @@ ul {
 - codinStruct-content/
 - md2html/
 - frontend/
-  - 404/ 
+  - 404/
   - conteudo/
   - icons/
   - js/
@@ -141,6 +191,8 @@ ul {
 
 ### Rotas
 
+<!-- Por algum motivo meu Prettier odeia essa tabela -->
+<!-- prettier-ignore -->
 | Rota              | Utilização                                                        |
 | ----------------- | ----------------------------------------------------------------- |
 | /api/content      | Retorna o conteúdo html de uma página                             |
@@ -151,7 +203,7 @@ ul {
 
 ## Docker
 
-O Docker é um container que permite a execução de códigos-fonte em um ambiente de desenvolvimento.
+O Docker é um container que permite a execução de códigos-fonte em um ambiente de desenvolvimento.  
 Nós o utilizamos para executar o backend em um ambiente de testes.
 
 ---
@@ -184,7 +236,7 @@ RUN pip3 install -r md2html/requirements.txt
 COPY . .
 
 # Saves the built files to the image so they don't have to be built again
-# every time Heroku stops the app because it was idle and has to start it again 
+# every time Heroku stops the app because it was idle and has to start it again
 RUN npm run build
 
 CMD ["npm","start"]
