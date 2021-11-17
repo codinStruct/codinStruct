@@ -81,6 +81,10 @@ table {
     @include box($padding: "small");
     border: 1px solid $bulma-purple;
 
+    span.icon {
+      float: right;
+    }
+
     i {
       // jQuery "fast" animation duration
       transition: transform 200ms ease-in-out;
