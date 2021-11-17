@@ -23,11 +23,11 @@ var backgroundSketch = new p5(function (p) {
     ];
 
     // Set canvas to the background div
-    const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+    const canvas = p.createCanvas(window.innerWidth, window.innerHeight);
     canvas.parent("#background");
 
     // The number of points is proportional to the area
-    nums = p.round((p.width * p.height) / 2000);
+    nums = p.round((p.width * p.height) / 20000);
 
     p.background(backgroundColor);
 
