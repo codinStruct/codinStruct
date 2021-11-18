@@ -1,0 +1,28 @@
+name: Push to heroku
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ORG_SUBMODULES_TOKEN }}
+          submodules: 'recursive'
+
+      - name: Login to heroku container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.ORG_HEROKU_TOKEN }}
+        run: heroku container:login
+          
+      - name: Push
+        env:
+          HEROKU_API_KEY: ${{ secrets.ORG_HEROKU_TOKEN }}
+        run: heroku container:push -a codinstruct-pi4 web
+
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.ORG_HEROKU_TOKEN }}
+        run: heroku container:release -a codinstruct-pi4 web
