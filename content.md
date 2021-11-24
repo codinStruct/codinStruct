@@ -76,6 +76,12 @@ sequências de escape.
 
 ---
 
+<style scoped>
+img {
+  width: 100%;
+}
+</style>
+
 ### E aqui está o mesmo trecho exibido em nosso site
 
 ![Markdown estilizado](assets/img/markdown_estilizado.png)
