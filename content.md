@@ -4,7 +4,24 @@ theme: codinstruct
 paginate: false
 ---
 
+<style scoped>
+p {
+  animation: fade-in 1s ease 1s 1 normal both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+</style>
+
 # ![wordmark codinStruct](assets/img/geo_anim.svg)
+
+Um projeto de estudantes para estudantes
 
 ---
 
