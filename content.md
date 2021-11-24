@@ -205,8 +205,8 @@ ul {
 
 ## Docker
 
-O Docker é um container que permite a execução de códigos-fonte em um ambiente de desenvolvimento.  
-Nós o utilizamos para executar o backend em um ambiente de testes.
+Docker é uma ferramenta de gerenciamento de contêineres para execução de códigos-fonte em um ambiente de desenvolvimento.  
+Nós o utilizamos para executar nosso back-end em um ambiente de testes.
 
 ---
 
