@@ -90,17 +90,8 @@ img {
 
 ## Como isso funciona?
 
----
-
-### 1. Convertemos o Markdown para HTML
-
-Para isso utilizamos nosso conversor escrito em Python, que é um wrapper do módulo Mistune.
-
----
-
-### 2. Aplicamos os estilos CSS durante a exibição
-
-Como o Markdown é convertido para HTML com as tags apropriadas, basta utilizar seletores CSS para aplicar os estilos.
+1. Convertemos o Markdown para HTML
+2. Aplicamos os estilos CSS durante a exibição
 
 ---
 
@@ -158,7 +149,7 @@ O Webpack compila os códigos-fonte JavaScript e CSS para um formato que pode se
 
 ---
 
-Exemplo Webpack antes de ser compilado:
+Trecho Node.js:
 
 ```js
 window.$ = require("jquery");
@@ -169,9 +160,7 @@ import "@fortawesome/fontawesome-free/css/solid.min.css";
 import "spinkit/spinkit.min.css";
 ```
 
----
-
-Exemplo Webpack depois de ser compilado:
+Mesmo trecho compilado com Webpack:
 
 ```js
 /*! For license information please see index.js.LICENSE.txt */
@@ -180,13 +169,13 @@ Exemplo Webpack depois de ser compilado:
 
 ---
 
-## Backend
+## Back-end
 
-Nosso backend utiliza o framework Express.js para gerenciar as requisições e uma API RESTful utilizada para acessar os dados no frontend.
+Nosso back-end utiliza o framework Express.js para gerenciar as requisições e uma API RESTful utilizada para acessar os dados no frontend.
 
 ---
 
-## Estrutura
+### Estrutura
 
 <style scoped>
 li {
@@ -233,42 +222,6 @@ Nós o utilizamos para executar nosso back-end em um ambiente de testes.
 
 ---
 
-### Dockerfile
-
-<style scoped>
-* {
-  font-size: 0.8em;
-  line-height: 0.8em;
-}
-</style>
-
-```dockerfile
-FROM ubuntu
-
-WORKDIR /usr/src/codinStruct
-RUN apt-get update
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
-
-COPY package*.json ./
-RUN npm install
-
-COPY md2html/requirements.txt md2html/
-RUN pip3 install -r md2html/requirements.txt
-
-COPY . .
-
-# Saves the built files to the image so they don't have to be built again
-# every time Heroku stops the app because it was idle and has to start it again
-RUN npm run build
-
-CMD ["npm","start"]
-```
-
----
-
 ## Heroku
 
 O Heroku é um serviço de hospedagem de aplicações web gratuito e de fácil uso.
@@ -278,6 +231,17 @@ Para fazer o upload da nossa aplicação é utilizado o Container Registry & Run
 <br>
 
 codinstruct-pi4.herokuapp.com
+
+---
+
+<style scoped>
+section {
+  padding: 0;
+}
+</style>
+
+<video src="assets/video/final.mp4" muted autoplay loop>
+</video>
 
 ---
 
