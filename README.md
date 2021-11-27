@@ -57,3 +57,5 @@ para HTML.
 
 Verifique duas vezes e crie alguma
 [issue](https://github.com/codinStruct/codinStruct/issues) se achar apropriado.
+
+Recomendamos que utilize nosso [Discussions](https://github.com/codinStruct/codinStruct/discussions) para sanar quaisquer dúvidas e compartilhar ideias.
