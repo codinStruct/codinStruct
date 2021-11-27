@@ -30,7 +30,7 @@
     "highlight.js": "^11.3.1",
     "highlightjs-line-numbers.js": "^2.8.0",
     "jquery": "^3.6.0",
-    "p5js": "^1.2.17",
+    "p5": "^1.4.0",
     "spinkit": "^2.0.1",
     "swiped-events": "^1.1.6",
     "xml2json": "^0.12.0"
