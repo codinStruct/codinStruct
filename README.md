@@ -12,6 +12,17 @@
 </div>
 
 <!-- Os espaços permitem usar Markdown dentro do HTML -->
+
+<div align="center">
+
+## Aviso
+
+</div>
+
+Devido à mudança do plano gratuito do Heroku e o fato de que este é um simples projeto de faculdade, o site estára inoperante por tempo indeterminado e não há planos para conserta-lo.
+
+Ainda é possível rodar o site localmente ou acessar a versão que utiliza o Github Pages <a href="https://codinstruct.github.io/codinStruct-content/">aqui</a>.
+
 <div align="center">
 
 ## O que é isso?
