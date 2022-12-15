@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{secrets.ORG_SUBMODULES_TOKEN}}
           submodules: 'recursive'
           
       - uses: actions/setup-node@v2

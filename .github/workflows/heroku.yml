@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.ORG_SUBMODULES_TOKEN }}
           submodules: 'recursive'
 
       - name: Login to heroku container registry
