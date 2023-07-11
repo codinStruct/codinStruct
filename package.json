@@ -15,7 +15,7 @@
     "sass": "npm run sass:preprocess",
     "sass:watch": "npx sass --watch frontend/",
     "sass:preprocess": "npx sass frontend/",
-    "md2html": "python3 md2html/app.py codinStruct-content/Content frontend/content",
+    "md2html": "ts-node md2html-setup.ts && ts-node md2html-run.ts",
     "webpack": "npm run webpack:dev",
     "webpack:dev": "npx webpack --config webpack.dev.js",
     "webpack:prod": "npx webpack --config webpack.prod.js"
@@ -33,6 +33,7 @@
     "p5": "^1.4.0",
     "spinkit": "^2.0.1",
     "swiped-events": "^1.1.6",
+    "ts-node": "10.9.1",
     "xml2json": "^0.12.0"
   },
   "devDependencies": {
