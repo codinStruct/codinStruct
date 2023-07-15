@@ -24,7 +24,7 @@ let cleanCommand: string | undefined;
 switch (process.platform) {
   case "linux":
     spawnCommand =
-      "cd md2html && python3 -m venv .venv && source .venv/bin/activate && pip3 install -r requirements.txt";
+      "cd md2html && python3 -m venv .venv && . .venv/bin/activate && pip3 install -r requirements.txt";
     cleanCommand = "rm -rf md2html/.venv";
     break;
 

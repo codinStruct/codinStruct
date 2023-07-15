@@ -14,7 +14,7 @@ let command: string | undefined;
 switch (process.platform) {
   case "linux":
     command =
-      "source ./md2html/.venv/bin/activate && python3 md2html/app.py codinStruct-content/Content frontend/content";
+      ". ./md2html/.venv/bin/activate && python3 md2html/app.py codinStruct-content/Content frontend/content";
     break;
 
   case "win32":
