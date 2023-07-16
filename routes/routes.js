@@ -9,6 +9,7 @@ router.get("/conteudo/:language/:category/:page", function (req, res) {
 
 // Matches every other request and uses the 404 page
 router.get("*", function (req, res) {
+  res.statusCode = 404;
   res.sendFile(path.join(__dirname, "..", "frontend", "404", "index.html"));
 });
 
