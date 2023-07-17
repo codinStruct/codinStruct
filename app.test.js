@@ -37,7 +37,7 @@ describe("OTHER routes", () => {
 describe("API routes", () => {
     describe("when asked for sidebar file tree", () => {
         test("should return the file tree in json format", async () => {
-            for (let lang of file_tree.language) {
+            for (const lang of file_tree.language) {
                 const path = lang.path;
 
                 const response = await request(app).get("/api/sidebar/" + path);
@@ -66,11 +66,11 @@ describe("API routes", () => {
     });
 
     describe("when asked for a content page", () => {
-        for (let lang of file_tree.language) {
+        for (const lang of file_tree.language) {
             describe("in language " + lang.path, () => {
-                for (let cat of lang.category) {
+                for (const cat of lang.category) {
                     describe("in category " + cat.path, () => {
-                        for (let page of cat.page) {
+                        for (const page of cat.page) {
                             test("page " + page.path + " should return the page", async () => {
                                 const response = await request(app).get("/api/content/" + lang.path + "/" + cat.path + "/" + page.path);
 
