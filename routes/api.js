@@ -8,7 +8,8 @@ router.get("/sidebar/:language", function (req, res) {
   let file_tree = res.locals.file_tree;
   let language = req.params.language.toLowerCase();
 
-  console.log("Request for /api/sidebar: /content/" + language);
+  if (process.env.NODE_ENV !== 'test')
+    console.info("Request for /api/sidebar: /content/" + language);
 
   let lang_node = file_tree.language.find(function (element) {
     return element.path == language;
@@ -33,7 +34,8 @@ router.get("/content/:language/:category/:page", function (req, res) {
     req.params.page.toLowerCase() +
     ".html";
 
-  console.log("Request for /api/content: " + html_path);
+  if (process.env.NODE_ENV !== 'test')
+    console.info("Request for /api/content: " + html_path);
 
   // Checking if the file exists
   if (fs.existsSync(path.join(__dirname, "..", "frontend", html_path))) {
@@ -48,7 +50,8 @@ router.get("/descriptions", function (req, res) {
   let file_tree = res.locals.file_tree;
   let description_list = [];
 
-  console.log("Request for /api/descriptions");
+  if (process.env.NODE_ENV !== 'test')
+    console.info("Request for /api/descriptions");
 
   // Getting the descriptions for each language
   file_tree.language.forEach(function (element) {

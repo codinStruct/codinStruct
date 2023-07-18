@@ -15,7 +15,7 @@ function error(what: string): never {
 const venvPath = path.join(__dirname, "md2html/.venv");
 
 if (fs.lstatSync(venvPath, { throwIfNoEntry: false })?.isDirectory()) {
-  console.log("md2html is already set up.");
+  console.info("md2html is already set up.");
   process.exit();
 }
 

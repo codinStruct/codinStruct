@@ -1,21 +1,29 @@
 # Test the server workflow
 
-name: Run Server
+name: Test Server
 
 on: [push, pull_request]
 
 jobs:
-  run-server:
+  test-server:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: 'recursive'
-          
-      - uses: actions/setup-node@v2
-      - run: npm install
+          submodules: "recursive"
 
-      # Timeout after 20 seconds
-      - run: timeout 20s npm start || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
-        env:
-          PORT: 3000
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: NPM Install and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: NPM Test
+        run: npm test
